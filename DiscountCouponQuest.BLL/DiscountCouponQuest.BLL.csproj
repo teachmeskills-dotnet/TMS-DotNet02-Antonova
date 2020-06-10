@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DiscountCouponQuest.Common\DiscountCouponQuest.Common.csproj" />
+    <ProjectReference Include="..\DiscountCouponQuest.DAL\DiscountCouponQuest.DAL.csproj" />
+  </ItemGroup>
+
+</Project>
