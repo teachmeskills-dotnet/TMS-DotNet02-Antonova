@@ -1,12 +1,11 @@
 ﻿using DiscountCouponQuest.Common.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace DiscountCouponQuest.WebApp.Models
+namespace DiscountCouponQuest.DAL.Models
 {
-    public class User : IDbIdentity
+    public class User:IDbIdentity
     {
         public int Id { get; set; }
         public string Password { get; set; }

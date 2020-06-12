@@ -1,10 +1,9 @@
 ﻿using DiscountCouponQuest.Common.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace DiscountCouponQuest.WebApp.Models
+namespace DiscountCouponQuest.DAL.Models
 {
     public class Customer : IDbIdentity
     {
