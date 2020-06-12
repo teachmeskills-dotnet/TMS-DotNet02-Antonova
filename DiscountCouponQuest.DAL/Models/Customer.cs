@@ -1,7 +1,5 @@
 ﻿using DiscountCouponQuest.Common.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DiscountCouponQuest.DAL.Models
 {
@@ -14,7 +12,6 @@ namespace DiscountCouponQuest.DAL.Models
         public int PhoneNumber { get; set; }
 
         public int UserId { get; set; }
-        public User User { get; set; }
 
         public List<CouponHistory> CouponHistories { get; set; }
     }
