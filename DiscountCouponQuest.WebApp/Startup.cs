@@ -1,3 +1,5 @@
+using DiscountCouponQuest.BLL.Repository;
+using DiscountCouponQuest.Common.Interfaces;
 using DiscountCouponQuest.DAL;
 using DiscountCouponQuest.DAL.Models;
 using Microsoft.AspNetCore.Builder;
@@ -25,6 +27,7 @@ namespace DiscountCouponQuest.WebApp
             services.AddDbContext<DiscountCouponQuestDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<DiscountCouponQuestDbContext>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

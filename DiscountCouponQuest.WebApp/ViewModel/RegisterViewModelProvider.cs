@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace DiscountCouponQuest.WebApp.ViewModel
 {
-    public class RegisterViewModel
+    public class RegisterViewModelProvider
     {
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
-
-        [Required]
-        [Display(Name = "Год рождения")]
-        public int Year { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -26,6 +22,12 @@ namespace DiscountCouponQuest.WebApp.ViewModel
         [DataType(DataType.Password)]
         [Display(Name = "Подтвердить пароль")]
         public string PasswordConfirm { get; set; }
-        public bool IsProvider { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public string SerialNumber { get; set; }
+        [Required]
+        public string Description { get; set; }
     }
 }
