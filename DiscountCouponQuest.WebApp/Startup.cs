@@ -26,7 +26,7 @@ namespace DiscountCouponQuest.WebApp
             services.AddControllersWithViews();
             services.AddDbContext<DiscountCouponQuestDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
             services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<DiscountCouponQuestDbContext>();
+                .AddEntityFrameworkStores<DiscountCouponQuestDbContext>().AddDefaultTokenProviders();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

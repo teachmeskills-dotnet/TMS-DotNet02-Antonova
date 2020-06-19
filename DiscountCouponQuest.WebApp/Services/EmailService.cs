@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MimeKit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using MailKit.Net.Smtp;
 using System.Threading.Tasks;
 
 namespace DiscountCouponQuest.WebApp.Services
@@ -22,7 +24,7 @@ namespace DiscountCouponQuest.WebApp.Services
             using (var client = new SmtpClient())
             {
                 await client.ConnectAsync("smtp.yandex.ru", 25, false);
-                await client.AuthenticateAsync("login@yandex.ru", "password");
+                await client.AuthenticateAsync("kristy_92@inbox.ru", "");
                 await client.SendAsync(emailMessage);
 
                 await client.DisconnectAsync(true);
