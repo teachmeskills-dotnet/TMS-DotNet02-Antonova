@@ -6,27 +6,27 @@ using System.Threading.Tasks;
 
 namespace DiscountCouponQuest.WebApp.ViewModel
 {
-    public class RegisterViewModelProvider
+    /// <summary>
+    /// Регистрация юридических лиц
+    /// </summary>
+
+    public class RegisterViewModelProvider : RegisterViewModelBase
     {
-        [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
-        public string Password { get; set; }
-
-        [Required]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
-        [DataType(DataType.Password)]
-        [Display(Name = "Подтвердить пароль")]
-        public string PasswordConfirm { get; set; }
-
+        /// <summary>
+        /// Имя
+        /// </summary>
         [Required]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Серийный номер
+        /// </summary>
         [Required]
         public string SerialNumber { get; set; }
+
+        /// <summary>
+        /// Описание компании
+        /// </summary>
         [Required]
         public string Description { get; set; }
     }

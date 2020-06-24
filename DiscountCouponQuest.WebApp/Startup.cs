@@ -18,9 +18,7 @@ namespace DiscountCouponQuest.WebApp
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
@@ -44,7 +42,7 @@ namespace DiscountCouponQuest.WebApp
             app.UseStaticFiles();
 
             app.UseRouting();
-            
+
             app.UseAuthentication();
             app.UseAuthorization();
 
