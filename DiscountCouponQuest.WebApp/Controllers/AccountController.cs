@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using DiscountCouponQuest.WebApp.Configurations;
+using Microsoft.Extensions.Options;
 
 namespace DiscountCouponQuest.WebApp.Controllers
 {
@@ -18,12 +20,23 @@ namespace DiscountCouponQuest.WebApp.Controllers
         private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly DiscountCouponQuestDbContext _dbContext;
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager, DiscountCouponQuestDbContext dbContext)
+        private readonly EmailSettings _settings;
+
+        /// <summary>
+        /// Конструктор для передачи параметров
+        /// </summary>
+        /// <param name="userManager"></param>
+        /// <param name="signInManager"></param>
+        /// <param name="roleManager"></param>
+        /// <param name="dbContext"></param>
+        /// <param name="setting"></param>
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager, DiscountCouponQuestDbContext dbContext, IOptions<EmailSettings> setting)
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
             _roleManager = roleManager ?? throw new ArgumentNullException(nameof(roleManager));
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _settings = setting.Value ?? throw new ArgumentNullException(nameof(setting));
         }
 
         /// <summary>
@@ -203,7 +216,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             var callbackUrl = Url.Action("ConfirmEmail", "Account",
             new { userId = user.Id, code = code },
             protocol: HttpContext.Request.Scheme);
-            EmailService emailService = new EmailService();
+            EmailService emailService = new EmailService(_settings.SMTPRef, _settings.Port, _settings.SSL, _settings.Password, _settings.FromEmailAddress, _settings.Disconnect);
             await emailService.SendEmailAsync(model.Email, "Confirm your account", $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
         }
 

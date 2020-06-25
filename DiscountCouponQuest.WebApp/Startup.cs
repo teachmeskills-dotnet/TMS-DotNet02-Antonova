@@ -1,7 +1,9 @@
 using DiscountCouponQuest.BLL.Repository;
+using DiscountCouponQuest.BLL.Services;
 using DiscountCouponQuest.Common.Interfaces;
 using DiscountCouponQuest.DAL;
 using DiscountCouponQuest.DAL.Models;
+using DiscountCouponQuest.WebApp.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -26,6 +28,7 @@ namespace DiscountCouponQuest.WebApp
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<DiscountCouponQuestDbContext>().AddDefaultTokenProviders();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

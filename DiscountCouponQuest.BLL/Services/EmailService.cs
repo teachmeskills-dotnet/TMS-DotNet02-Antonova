@@ -12,8 +12,33 @@ namespace DiscountCouponQuest.BLL.Services
     /// </summary>
     public class EmailService
     {
+        private string sMTPRef;
+        private int port;
+        private bool sSL;
+        private string password;
+        private string fromEmailAddress;
+        private bool disconnect;
         /// <summary>
-        ///    Отправка e-mail с помощью SMTP-клиента
+        /// Конструктор для передачи параметров
+        /// </summary>
+        /// <param name="sMTPRef"></param>
+        /// <param name="port"></param>
+        /// <param name="sSL"></param>
+        /// <param name="password"></param>
+        /// <param name="fromEmailAddress"></param>
+        /// <param name="disconnect"></param>
+        public EmailService(string sMTPRef, int port, bool sSL, string password, string fromEmailAddress, bool disconnect)
+        {
+            this.sMTPRef = sMTPRef;
+            this.port = port;
+            this.sSL = sSL;
+            this.password = password;
+            this.fromEmailAddress = fromEmailAddress;
+            this.disconnect = disconnect;
+        }
+
+        /// <summary>
+        /// Отправка e-mail с помощью SMTP-клиента
         /// </summary>
         /// <param name="email"></param>
         /// <param name="subject"></param>
@@ -22,7 +47,7 @@ namespace DiscountCouponQuest.BLL.Services
         public async Task SendEmailAsync(string email, string subject, string message)
         {
             var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress("Администрация сайта", "couponquest02@gmail.com"));
+            emailMessage.From.Add(new MailboxAddress("Администрация сайта", fromEmailAddress));
             emailMessage.To.Add(new MailboxAddress("", email));
             emailMessage.Subject = subject;
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
@@ -31,10 +56,10 @@ namespace DiscountCouponQuest.BLL.Services
             };
             using (var client = new SmtpClient())
             {
-                await client.ConnectAsync("smtp.gmail.com", 465, true);
-                await client.AuthenticateAsync("couponquest02@gmail.com", "23Farezuu");
+                await client.ConnectAsync(sMTPRef, port, sSL);
+                await client.AuthenticateAsync(fromEmailAddress, password);
                 await client.SendAsync(emailMessage);
-                await client.DisconnectAsync(true);
+                await client.DisconnectAsync(disconnect);
             }
         }
     }
