@@ -11,7 +11,7 @@ namespace DiscountCouponQuest.DAL.Models
         public bool IsActive { get; set; }
         public string UniqueCode { get; set; }
 
-        public string ProviderId { get; set; }
+        public int ProviderId { get; set; }
         public Provider Provider { get; set; }
 
         public List<CouponHistory> CouponHistories { get; set; }

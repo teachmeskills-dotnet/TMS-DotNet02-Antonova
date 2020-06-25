@@ -1,15 +1,10 @@
-﻿using DiscountCouponQuest.Common.Interfaces;
-using DiscountCouponQuest.DAL;
+﻿using DiscountCouponQuest.DAL;
 using DiscountCouponQuest.DAL.Models;
 using DiscountCouponQuest.BLL.Services;
 using DiscountCouponQuest.WebApp.ViewModel;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Identity;
 
 namespace DiscountCouponQuest.WebApp.Controllers
@@ -49,6 +44,16 @@ namespace DiscountCouponQuest.WebApp.Controllers
         public IActionResult RegisterProvider()
         {
             return View();
+        }
+
+        /// <summary>
+        /// Вход в систему
+        /// </summary>
+        /// <returns>Login View</returns>
+        [HttpGet]
+        public IActionResult Login(string returnUrl = null)
+        {
+            return View(new LoginViewModel { ReturnUrl = returnUrl });
         }
 
         /// <summary>
@@ -143,6 +148,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             else
                 return View("Error");
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)

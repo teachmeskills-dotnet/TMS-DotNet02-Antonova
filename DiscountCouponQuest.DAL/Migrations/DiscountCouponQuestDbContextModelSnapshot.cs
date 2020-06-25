@@ -38,10 +38,7 @@ namespace DiscountCouponQuest.DAL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProviderId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ProviderId1")
+                    b.Property<int>("ProviderId")
                         .HasColumnType("int");
 
                     b.Property<string>("UniqueCode")
@@ -49,7 +46,7 @@ namespace DiscountCouponQuest.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProviderId1");
+                    b.HasIndex("ProviderId");
 
                     b.ToTable("Coupons");
                 });
@@ -61,19 +58,13 @@ namespace DiscountCouponQuest.DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CouponId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CouponId1")
+                    b.Property<int>("CouponId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CustomerId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CustomerId1")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsUsed")
@@ -81,9 +72,9 @@ namespace DiscountCouponQuest.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CouponId1");
+                    b.HasIndex("CouponId");
 
-                    b.HasIndex("CustomerId1");
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("CouponHistories");
                 });
@@ -339,18 +330,24 @@ namespace DiscountCouponQuest.DAL.Migrations
                 {
                     b.HasOne("DiscountCouponQuest.DAL.Models.Provider", "Provider")
                         .WithMany("Coupons")
-                        .HasForeignKey("ProviderId1");
+                        .HasForeignKey("ProviderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DiscountCouponQuest.DAL.Models.CouponHistory", b =>
                 {
                     b.HasOne("DiscountCouponQuest.DAL.Models.Coupon", "Coupon")
                         .WithMany("CouponHistories")
-                        .HasForeignKey("CouponId1");
+                        .HasForeignKey("CouponId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DiscountCouponQuest.DAL.Models.Customer", "Customer")
                         .WithMany("CouponHistories")
-                        .HasForeignKey("CustomerId1");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

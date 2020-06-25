@@ -22,7 +22,7 @@ namespace DiscountCouponQuest.BLL.Services
         public async Task SendEmailAsync(string email, string subject, string message)
         {
             var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress("Администрация сайта", "couponquest@bk.ru"));
+            emailMessage.From.Add(new MailboxAddress("Администрация сайта", "couponquest02@gmail.com"));
             emailMessage.To.Add(new MailboxAddress("", email));
             emailMessage.Subject = subject;
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
@@ -31,8 +31,8 @@ namespace DiscountCouponQuest.BLL.Services
             };
             using (var client = new SmtpClient())
             {
-                await client.ConnectAsync("smtp.mail.ru", 587, false);
-                await client.AuthenticateAsync("couponquest@bk.ru", "23Farezuu");
+                await client.ConnectAsync("smtp.gmail.com", 465, true);
+                await client.AuthenticateAsync("couponquest02@gmail.com", "23Farezuu");
                 await client.SendAsync(emailMessage);
                 await client.DisconnectAsync(true);
             }

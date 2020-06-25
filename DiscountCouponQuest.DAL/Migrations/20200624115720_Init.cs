@@ -56,7 +56,7 @@ namespace DiscountCouponQuest.DAL.Migrations
                     MiddleName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<int>(nullable: false),
-                    UserId = table.Column<int>(nullable: false)
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -72,7 +72,7 @@ namespace DiscountCouponQuest.DAL.Migrations
                     Name = table.Column<string>(nullable: true),
                     SerialNumber = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    UserId = table.Column<int>(nullable: false)
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
