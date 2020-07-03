@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiscountCouponQuest.DAL.Migrations
 {
     [DbContext(typeof(DiscountCouponQuestDbContext))]
-    [Migration("20200703065311_RenameFile")]
-    partial class RenameFile
+    [Migration("20200703124748_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,6 +84,9 @@ namespace DiscountCouponQuest.DAL.Migrations
 
                     b.Property<int>("Discount")
                         .HasColumnType("int");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -331,7 +334,7 @@ namespace DiscountCouponQuest.DAL.Migrations
             modelBuilder.Entity("DiscountCouponQuest.DAL.Models.Quest", b =>
                 {
                     b.HasOne("DiscountCouponQuest.DAL.Models.Provider", "Provider")
-                        .WithMany("Coupons")
+                        .WithMany("Quests")
                         .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -340,7 +343,7 @@ namespace DiscountCouponQuest.DAL.Migrations
             modelBuilder.Entity("DiscountCouponQuest.DAL.Models.QuestHistory", b =>
                 {
                     b.HasOne("DiscountCouponQuest.DAL.Models.Quest", "Coupon")
-                        .WithMany("CouponHistories")
+                        .WithMany("QuestHistories")
                         .HasForeignKey("CouponId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

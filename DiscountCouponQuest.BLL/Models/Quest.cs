@@ -29,6 +29,11 @@
         /// Уникальный номер
         /// </summary>
         public string UniqueCode { get; set; }
+
+        /// <summary>
+        /// Изображение
+        /// </summary>
+        public byte[] Image { get; set; }
         /// <summary>
         /// ID юридического лица
         /// </summary>

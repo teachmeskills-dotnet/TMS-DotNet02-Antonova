@@ -186,7 +186,7 @@ namespace DiscountCouponQuest.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Coupons",
+                name: "Quests",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -196,13 +196,14 @@ namespace DiscountCouponQuest.DAL.Migrations
                     Description = table.Column<string>(nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
                     UniqueCode = table.Column<string>(nullable: true),
+                    Image = table.Column<byte[]>(nullable: true),
                     ProviderId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Coupons", x => x.Id);
+                    table.PrimaryKey("PK_Quests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Coupons_Providers_ProviderId",
+                        name: "FK_Quests_Providers_ProviderId",
                         column: x => x.ProviderId,
                         principalTable: "Providers",
                         principalColumn: "Id",
@@ -210,7 +211,7 @@ namespace DiscountCouponQuest.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CouponHistories",
+                name: "QuestHistories",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -222,15 +223,15 @@ namespace DiscountCouponQuest.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CouponHistories", x => x.Id);
+                    table.PrimaryKey("PK_QuestHistories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CouponHistories_Coupons_CouponId",
+                        name: "FK_QuestHistories_Quests_CouponId",
                         column: x => x.CouponId,
-                        principalTable: "Coupons",
+                        principalTable: "Quests",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CouponHistories_Customers_CustomerId",
+                        name: "FK_QuestHistories_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
@@ -277,18 +278,18 @@ namespace DiscountCouponQuest.DAL.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CouponHistories_CouponId",
-                table: "CouponHistories",
+                name: "IX_QuestHistories_CouponId",
+                table: "QuestHistories",
                 column: "CouponId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CouponHistories_CustomerId",
-                table: "CouponHistories",
+                name: "IX_QuestHistories_CustomerId",
+                table: "QuestHistories",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Coupons_ProviderId",
-                table: "Coupons",
+                name: "IX_Quests_ProviderId",
+                table: "Quests",
                 column: "ProviderId");
         }
 
@@ -310,7 +311,7 @@ namespace DiscountCouponQuest.DAL.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CouponHistories");
+                name: "QuestHistories");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -319,7 +320,7 @@ namespace DiscountCouponQuest.DAL.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Coupons");
+                name: "Quests");
 
             migrationBuilder.DropTable(
                 name: "Customers");

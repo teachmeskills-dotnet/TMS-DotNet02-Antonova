@@ -34,5 +34,9 @@ namespace DiscountCouponQuest.BLL.Models
         /// ID пользователя
         /// </summary>
         public string UserId { get; set; }
+        public Provider()
+        {
+
+        }
     }
 }
