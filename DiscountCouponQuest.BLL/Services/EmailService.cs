@@ -1,8 +1,5 @@
 ﻿using MailKit.Net.Smtp;
 using MimeKit;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DiscountCouponQuest.BLL.Services
@@ -12,7 +9,7 @@ namespace DiscountCouponQuest.BLL.Services
     /// </summary>
     public class EmailService
     {
-        private string sMTPRef;
+        private string sMtpRef;
         private int port;
         private bool sSL;
         private string password;
@@ -21,15 +18,15 @@ namespace DiscountCouponQuest.BLL.Services
         /// <summary>
         /// Конструктор для передачи параметров
         /// </summary>
-        /// <param name="sMTPRef"></param>
+        /// <param name="sMtpRef"></param>
         /// <param name="port"></param>
         /// <param name="sSL"></param>
         /// <param name="password"></param>
         /// <param name="fromEmailAddress"></param>
         /// <param name="disconnect"></param>
-        public EmailService(string sMTPRef, int port, bool sSL, string password, string fromEmailAddress, bool disconnect)
+        public EmailService(string sMtpRef, int port, bool sSL, string password, string fromEmailAddress, bool disconnect)
         {
-            this.sMTPRef = sMTPRef;
+            this.sMtpRef = sMtpRef;
             this.port = port;
             this.sSL = sSL;
             this.password = password;
@@ -56,7 +53,7 @@ namespace DiscountCouponQuest.BLL.Services
             };
             using (var client = new SmtpClient())
             {
-                await client.ConnectAsync(sMTPRef, port, sSL);
+                await client.ConnectAsync(sMtpRef, port, sSL);
                 await client.AuthenticateAsync(fromEmailAddress, password);
                 await client.SendAsync(emailMessage);
                 await client.DisconnectAsync(disconnect);

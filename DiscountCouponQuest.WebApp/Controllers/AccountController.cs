@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using DiscountCouponQuest.WebApp.Configurations;
 using Microsoft.Extensions.Options;
+using CustomerBLL = DiscountCouponQuest.BLL.Models.Customer;
+using ProviderBLL = DiscountCouponQuest.BLL.Models.Provider;
 
 namespace DiscountCouponQuest.WebApp.Controllers
 {
@@ -21,22 +23,27 @@ namespace DiscountCouponQuest.WebApp.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly DiscountCouponQuestDbContext _dbContext;
         private readonly EmailSettings _settings;
+        private readonly CustomersService _customersService;
+        private readonly ProviderService _providersService;
+
 
         /// <summary>
-        /// Конструктор для передачи параметров
+        /// Конструктор 
         /// </summary>
         /// <param name="userManager"></param>
         /// <param name="signInManager"></param>
         /// <param name="roleManager"></param>
         /// <param name="dbContext"></param>
         /// <param name="setting"></param>
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager, DiscountCouponQuestDbContext dbContext, IOptions<EmailSettings> setting)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager, DiscountCouponQuestDbContext dbContext, IOptions<EmailSettings> setting, CustomersService customersService, ProviderService providerService)
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
             _roleManager = roleManager ?? throw new ArgumentNullException(nameof(roleManager));
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             _settings = setting.Value ?? throw new ArgumentNullException(nameof(setting));
+            _customersService = customersService ?? throw new ArgumentNullException(nameof(customersService));
+            _providersService = providerService ?? throw new ArgumentNullException(nameof(providerService));
         }
 
         /// <summary>
@@ -85,7 +92,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
                 if (result.Succeeded)
                 {
                     await EmailSend(model, user);
-                    var customer = new Customer(user.Id)
+                    var customer = new CustomerBLL(user.Id)
                     {
                         FirstName = model.FirstName,
                         MiddleName = model.MiddleName,
@@ -123,7 +130,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
                 if (result.Succeeded)
                 {
                     await EmailSend(model, user);
-                    var provider = new Provider(user.Id)
+                    var provider = new ProviderBLL(user.Id)
                     {
                         Name = model.Name,
                         SerialNumber = model.SerialNumber,
@@ -161,7 +168,6 @@ namespace DiscountCouponQuest.WebApp.Controllers
             else
                 return View("Error");
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -226,10 +232,9 @@ namespace DiscountCouponQuest.WebApp.Controllers
         /// <param name="user"></param>
         /// <param name="customer"></param>
         /// <returns></returns>
-        private async Task AddToDataBase(User user, Customer customer)
+        private async Task AddToDataBase(User user, CustomerBLL customer)
         {
-            await _dbContext.Customers.AddAsync(customer);
-            await _dbContext.SaveChangesAsync();
+            await _customersService.AddAsync(customer);
             await _userManager.AddToRoleAsync(user, "Customer");
             await _signInManager.SignInAsync(user, false);
         }
@@ -240,10 +245,9 @@ namespace DiscountCouponQuest.WebApp.Controllers
         /// <param name="user"></param>
         /// <param name="provider"></param>
         /// <returns></returns>
-        private async Task AddProviderToDataBase(User user, Provider provider)
+        private async Task AddProviderToDataBase(User user, ProviderBLL provider)
         {
-            await _dbContext.Providers.AddAsync(provider);
-            await _dbContext.SaveChangesAsync();
+            await _providersService.AddAsync(provider);
             await _userManager.AddToRoleAsync(user, "Provider");
             await _signInManager.SignInAsync(user, false);
         }

@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DiscountCouponQuest.BLL.Repository
@@ -13,7 +12,7 @@ namespace DiscountCouponQuest.BLL.Repository
     public class Repository<T> : IRepository<T> where T : class
     {
         private readonly DbSet<T> _dbSet;
-        private readonly DbContext _context;
+        private readonly DiscountCouponQuestDbContext _context;
 
         public Repository(DiscountCouponQuestDbContext context)
         {
@@ -92,7 +91,8 @@ namespace DiscountCouponQuest.BLL.Repository
         /// <param name="entity">Entity object.</param>
         public void Update(T entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
+           _context.Entry(entity).State = EntityState.Modified;
+          
         }
     }
 }

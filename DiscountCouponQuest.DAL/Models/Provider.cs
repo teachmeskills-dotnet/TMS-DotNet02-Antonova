@@ -11,7 +11,7 @@ namespace DiscountCouponQuest.DAL.Models
 
         public string UserId { get; set; }
 
-        public List<Coupon> Coupons { get; set; }
+        public List<Quest> Coupons { get; set; }
         public Provider(string userId)
         {
             UserId = userId;

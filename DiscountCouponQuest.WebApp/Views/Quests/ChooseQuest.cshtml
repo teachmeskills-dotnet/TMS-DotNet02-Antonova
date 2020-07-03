@@ -1,0 +1,15 @@
+﻿@model List<QuestViewModel>
+<div class="row">
+    @foreach (var quest in Model)
+    {
+        <div class="col-4">
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">@quest.Description</p>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

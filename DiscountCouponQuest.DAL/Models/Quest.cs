@@ -2,7 +2,7 @@
 
 namespace DiscountCouponQuest.DAL.Models
 {
-    public class Coupon
+    public class Quest
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -14,6 +14,6 @@ namespace DiscountCouponQuest.DAL.Models
         public int ProviderId { get; set; }
         public Provider Provider { get; set; }
 
-        public List<CouponHistory> CouponHistories { get; set; }
+        public List<QuestHistory> CouponHistories { get; set; }
     }
 }
