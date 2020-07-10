@@ -73,7 +73,13 @@ namespace DiscountCouponQuest.BLL.Repository
         /// <returns></returns>
         public async Task<T> GetEntityAsync(Expression<Func<T, bool>> predicate)
         {
-            return await _dbSet.FirstOrDefaultAsync(predicate);
+            var model = await _dbSet.FirstOrDefaultAsync(predicate);
+            if(model != null)
+            {
+                _context.Entry(model).State = EntityState.Detached;
+            }
+
+            return model;
         }
 
         /// <summary>

@@ -27,7 +27,7 @@ namespace DiscountCouponQuest.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<DiscountCouponQuestDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
+            services.AddDbContext<DiscountCouponQuestDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlConnection")), ServiceLifetime.Transient);
             services.AddIdentity<User, IdentityRole>()
             .AddEntityFrameworkStores<DiscountCouponQuestDbContext>().AddDefaultTokenProviders();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));

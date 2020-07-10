@@ -9,6 +9,9 @@ using AutoMapper;
 
 using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.Common.Interfaces;
+
+using Microsoft.EntityFrameworkCore;
+
 using ProviderDAL = DiscountCouponQuest.DAL.Models.Provider;
 
 namespace DiscountCouponQuest.BLL.Services
@@ -34,7 +37,7 @@ namespace DiscountCouponQuest.BLL.Services
 
         public Provider GetProviderByUserId(string userId)
         {
-            var providers = _repository.GetAll().ToList();
+            var providers = _repository.GetAll().AsNoTracking().ToList();
             var providerDataModel = providers.FirstOrDefault(c => c.UserId.Equals(userId, StringComparison.InvariantCultureIgnoreCase));
             if(providerDataModel is null)
             {

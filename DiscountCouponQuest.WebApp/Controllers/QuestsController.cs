@@ -71,13 +71,36 @@ namespace DiscountCouponQuest.WebApp.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public async Task<IActionResult> EditQuest(int id)
+        {
+            var quest = await _questService.GetQuestById(id);
+            var model = _mapper.Map<QuestViewModel>(quest);
+            return View(model);
+        }
         [HttpPost]
         [Authorize]
         public IActionResult EditQuest(QuestViewModel editQuest)
         {
             var quest = _mapper.Map<Quest>(editQuest);
+            if (editQuest.ImageFile != null)
+            {
+                byte[] imageData = null;
+                using (var binaryReader = new BinaryReader(editQuest.ImageFile.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int)editQuest.ImageFile.Length);
+                }
+                quest.Image = imageData;
+            }
             _questService.Edit(quest);
-            return View();
+            return RedirectToAction("ChooseQuest");
+        }
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> DeleteQuest(int id)
+        {
+            await _questService.DeleteQuest(id);
+            return RedirectToAction("ChooseQuest");
         }
     }
 }
