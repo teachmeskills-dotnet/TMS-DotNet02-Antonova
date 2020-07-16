@@ -29,7 +29,7 @@ namespace DiscountCouponQuest.BLL.Services
 
         public List<Quest> GetAll()
         {
-            var allQuests = _repository.GetAll().AsNoTracking(). ToList();
+            var allQuests = _repository.GetAll().AsNoTracking().ToList();
             var result = _mapper.Map<List<Quest>>(allQuests);
             return result;
         }
@@ -45,7 +45,12 @@ namespace DiscountCouponQuest.BLL.Services
             questToEdit.Image = quest.Image;
             questToEdit.Name = quest.Name;
             questToEdit.Description = quest.Description;
-            questToEdit.Discount = quest.Discount;
+            questToEdit.Distance = quest.Distance;
+            questToEdit.Time = quest.Time;
+            questToEdit.Price = quest.Price;
+            questToEdit.Start = quest.Start;
+            questToEdit.Finish = quest.Finish;
+            questToEdit.Bonus = quest.Bonus;
             _repository.Update(questToEdit);
             await _repository.SaveChangesAsync();
         }

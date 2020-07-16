@@ -2,16 +2,31 @@
 <h2>Edit</h2>
 <form method="post" asp-controller="Quests" asp-action="EditQuest" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly"></div>
-    <input asp-for="Id" hidden/>
+    <input asp-for="Id" hidden />
     <div>
         <label asp-for="Name"></label><br />
         <input asp-for="Name" />
         <span asp-validation-for="Name"></span>
     </div>
     <div>
-        <label asp-for="Discount"></label><br />
-        <input asp-for="Discount" />
-        <span asp-validation-for="Discount"></span>
+        <label asp-for="Time"></label><br />
+        <input asp-for="Time" />
+        <span asp-validation-for="Time"></span>
+    </div>
+    <div>
+        <label asp-for="Distance"></label><br />
+        <input asp-for="Distance" />
+        <span asp-validation-for="Distance"></span>
+    </div>
+    <div>
+        <label asp-for="Price"></label><br />
+        <input asp-for="Price" />
+        <span asp-validation-for="Price"></span>
+    </div>
+    <div>
+        <label asp-for="Bonus"></label><br />
+        <input asp-for="Bonus" />
+        <span asp-validation-for="Bonus"></span>
     </div>
     <div class="form-group">
         <label asp-for="Description"></label>
@@ -22,10 +37,21 @@
         <input asp-for="ImageFile" />
         <span asp-validation-for="ImageFile"></span>
     </div>
+    <div>
+        <label asp-for="Start"></label><br />
+        <input asp-for="Start" />
+        <span asp-validation-for="Start"></span>
+
+    </div>
+    <div>
+        <label asp-for="Finish"></label><br />
+        <input asp-for="Finish" />
+        <span asp-validation-for="Finish"></span>
+    </div>
     <fieldset disabled>
         <div class="form-group">
             <label asp-for="UniqueCode">Disabled input</label>
-            <input asp-for="UniqueCode"  class="form-control">
+            <input asp-for="UniqueCode" class="form-control">
         </div>
     </fieldset>
     <div>

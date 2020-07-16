@@ -9,7 +9,7 @@ namespace DiscountCouponQuest.BLL.Models
     /// </summary>
     public class Provider
     {
-        public Provider (string id)
+        public Provider(string id)
         {
             UserId = id;
         }
@@ -17,19 +17,6 @@ namespace DiscountCouponQuest.BLL.Models
         /// ID
         /// </summary>
         public int Id { get; set; }
-        /// <summary>
-        /// Имя
-        /// </summary>
-        public string Name { get; set; }
-        /// <summary>
-        /// Серийный номер
-        /// </summary>
-        public string SerialNumber { get; set; }
-        /// <summary>
-        /// Описание
-        /// </summary>
-        public string Description { get; set; }
-
         /// <summary>
         /// ID пользователя
         /// </summary>

@@ -134,7 +134,6 @@ namespace DiscountCouponQuest.WebApp.Controllers
                     await EmailSend(model, user);
                     var provider = new ProviderBLL(user.Id)
                     {
-                        SerialNumber = model.SerialNumber,
                         UserId = user.Id
                     };
                     await AddProviderToDataBase(user, provider);

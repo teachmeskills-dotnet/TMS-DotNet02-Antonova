@@ -11,26 +11,10 @@ namespace DiscountCouponQuest.DAL.Models
         /// ID
         /// </summary>
         public int Id { get; set; }
-        /// <summary>
-        /// Имя
-        /// </summary>
-        public string Name { get; set; }
-        /// <summary>
-        /// Серийный номер
-        /// </summary>
-        public string SerialNumber { get; set; }
-        /// <summary>
-        /// Описание
-        /// </summary>
-        public string Description { get; set; }
-
-        /// <summary>
-        /// ID пользователя
-        /// </summary>
         public string UserId { get; set; }
 
         public List<Quest> Quests { get; set; }
-        
+
         /// <summary>
         /// Конструктор
         /// </summary>

@@ -7,9 +7,14 @@
                 <img style='width:100%; height:100%;' src="data:image/jpeg;base64,@(Convert.ToBase64String(quest.Image))" />
                 <div class="card-body">
                     <p class="quest-name">@quest.Name</p>
-                    <p class="quest-discount">@quest.Discount</p>
+                    <p class="quest-discount">@quest.Distance</p>
                     <p class="card-text">@quest.Description</p>
                     <p class="quest-number">@quest.UniqueCode</p>
+                    <p class="quest-time">@quest.Time</p>
+                    <p class="quest-price">@quest.Price</p>
+                    <p class="quest-bonus">@quest.Bonus</p>
+                    <p class="quest-start">@quest.Start</p>
+                    <p class="quest-finish">@quest.Finish</p>
                     <a class="btn btn-dark" role="button" asp-controller="Quests" asp-action="EditQuest" asp-route-id="@quest.Id">Редактировать</a>
                     <a class="btn btn-dark" role="button" asp-controller="Quests" asp-action="DeleteQuest" asp-route-id="@quest.Id">Удалить</a>
                 </div>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DiscountCouponQuest.DAL.Models
 {
@@ -18,7 +19,7 @@ namespace DiscountCouponQuest.DAL.Models
         /// <summary>
         /// Скидка
         /// </summary>
-        public int Discount { get; set; }
+        public string Time { get; set; }
         /// <summary>
         /// Описание
         /// </summary>
@@ -31,10 +32,30 @@ namespace DiscountCouponQuest.DAL.Models
         /// Уникальный номер
         /// </summary>
         public string UniqueCode { get; set; }
-       /// <summary>
-       /// Изображение
-       /// </summary>
+        /// <summary>
+        /// Изображение
+        /// </summary>
         public byte[] Image { get; set; }
+        /// <summary>
+        /// Длмна маршрута
+        /// </summary>
+        public string Distance { get; set; }
+        /// <summary>
+        /// Цена
+        /// </summary>
+        public int Price { get; set; }
+        /// <summary>
+        /// Бонусы
+        /// </summary>
+        public int Bonus { get; set; }
+        /// <summary>
+        /// Начало квеста
+        /// </summary>
+        public string Start { get; set; }
+        /// <summary>
+        /// Конец квеста
+        /// </summary>
+        public string Finish { get; set; }
 
         /// <summary>
         /// ID юридического лица

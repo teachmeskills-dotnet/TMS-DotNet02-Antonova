@@ -12,7 +12,7 @@ namespace DiscountCouponQuest.DAL.Models
 
         public string UserId { get; set; }
 
-        public List<QuestHistory> CouponHistories { get; set; }
+        public List<QuestHistory> QuestHistories { get; set; }
 
         public Customer(string userId)
         {
