@@ -1,12 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace DiscountCouponQuest.DAL.Models
+namespace DiscountCouponQuest.BLL.Models
 {
     /// <summary>
     /// Юридическое лицо
     /// </summary>
     public class Provider
     {
+        public Provider (string id)
+        {
+            UserId = id;
+        }
         /// <summary>
         /// ID
         /// </summary>
@@ -28,17 +34,6 @@ namespace DiscountCouponQuest.DAL.Models
         /// ID пользователя
         /// </summary>
         public string UserId { get; set; }
-
-        public List<Quest> Quests { get; set; }
-        
-        /// <summary>
-        /// Конструктор
-        /// </summary>
-        /// <param name="userId"></param>
-        public Provider(string userId)
-        {
-            UserId = userId;
-        }
         public Provider()
         {
 

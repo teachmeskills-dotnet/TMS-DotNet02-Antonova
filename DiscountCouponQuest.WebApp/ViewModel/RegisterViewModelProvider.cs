@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DiscountCouponQuest.WebApp.ViewModel
 {
@@ -12,11 +8,6 @@ namespace DiscountCouponQuest.WebApp.ViewModel
 
     public class RegisterViewModelProvider : RegisterViewModelBase
     {
-        /// <summary>
-        /// Имя
-        /// </summary>
-        [Required]
-        public string Name { get; set; }
 
         /// <summary>
         /// Серийный номер
@@ -24,10 +15,5 @@ namespace DiscountCouponQuest.WebApp.ViewModel
         [Required]
         public string SerialNumber { get; set; }
 
-        /// <summary>
-        /// Описание компании
-        /// </summary>
-        [Required]
-        public string Description { get; set; }
     }
 }

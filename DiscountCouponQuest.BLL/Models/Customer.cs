@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
-
-namespace DiscountCouponQuest.DAL.Models
+﻿namespace DiscountCouponQuest.BLL.Models
 {
-    public class Customer 
+    public class Customer
     {
+        public Customer(string id)
+        {
+            UserId = id;
+        }
+
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
@@ -11,12 +14,5 @@ namespace DiscountCouponQuest.DAL.Models
         public int PhoneNumber { get; set; }
 
         public string UserId { get; set; }
-
-        public List<QuestHistory> CouponHistories { get; set; }
-
-        public Customer(string userId)
-        {
-            UserId = userId;
-        }
     }
 }

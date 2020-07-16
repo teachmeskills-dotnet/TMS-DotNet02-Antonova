@@ -1,0 +1,37 @@
+﻿<h2>Вход в приложение</h2>
+<div class="modal-content">
+    <div class="modal-c-tabs">
+        <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab">
+                    <i class="fas fa-user mr-1"></i>
+                    Login
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel8" role="tab">
+                    <i class="fas fa-user-plus mr-1"></i>
+                    Register
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel9" role="tab">
+                    <i class="fas fa-user-plus mr-1"></i>
+                    Register provider
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="panel7" role="tabpanel">
+                @await Html.PartialAsync("_Login")
+            </div>
+            <div class="tab-pane fade" id="panel8" role="tabpanel">
+                @{await Html.RenderPartialAsync("_RegisterCustomer");}
+            </div>
+            <div class="tab-pane fade" id="panel9" role="tabpanel">
+                @{await Html.RenderPartialAsync("_RegisterProvider");}
+            </div>
+
+        </div>
+    </div>
+</div>
