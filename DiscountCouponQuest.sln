@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountCouponQuest.DAL", "DiscountCouponQuest.DAL\DiscountCouponQuest.DAL.csproj", "{20990351-9780-425E-9443-8ED67BC546A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountCouponQuest.DAL", "DiscountCouponQuest.DAL\DiscountCouponQuest.DAL.csproj", "{20990351-9780-425E-9443-8ED67BC546A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountCouponQuest.BLL", "DiscountCouponQuest.BLL\DiscountCouponQuest.BLL.csproj", "{961A45DD-438A-4E01-B83E-4703A0BBACFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountCouponQuest.BLL", "DiscountCouponQuest.BLL\DiscountCouponQuest.BLL.csproj", "{961A45DD-438A-4E01-B83E-4703A0BBACFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountCouponQuest.Common", "DiscountCouponQuest.Common\DiscountCouponQuest.Common.csproj", "{14DDCB64-394A-4C0F-824B-CE5A7583577B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountCouponQuest.Common", "DiscountCouponQuest.Common\DiscountCouponQuest.Common.csproj", "{14DDCB64-394A-4C0F-824B-CE5A7583577B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountCouponQuest.WebApp", "DiscountCouponQuest.WebApp\DiscountCouponQuest.WebApp.csproj", "{4109EF0E-9576-44D3-8D1C-F8881624E20A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountCouponQuest.WebApp", "DiscountCouponQuest.WebApp\DiscountCouponQuest.WebApp.csproj", "{4109EF0E-9576-44D3-8D1C-F8881624E20A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

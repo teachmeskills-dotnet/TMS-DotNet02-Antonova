@@ -8,11 +8,6 @@ namespace DiscountCouponQuest.WebApp.ViewModel
 
     public class RegisterViewModelProvider : RegisterViewModelBase
     {
-        /// <summary>
-        /// Имя
-        /// </summary>
-        [Required]
-        public string Name { get; set; }
 
         /// <summary>
         /// Серийный номер
@@ -20,10 +15,5 @@ namespace DiscountCouponQuest.WebApp.ViewModel
         [Required]
         public string SerialNumber { get; set; }
 
-        /// <summary>
-        /// Описание компании
-        /// </summary>
-        [Required]
-        public string Description { get; set; }
     }
 }

@@ -34,8 +34,8 @@ namespace DiscountCouponQuest.WebApp.Controllers
         {
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _questService = questService ?? throw new ArgumentNullException(nameof(questService));
-            _userManager = userManager;
-            _providerService = providerService;
+            _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+            _providerService = providerService ?? throw new ArgumentNullException(nameof(providerService));
         }
         [HttpGet]
         public IActionResult ChooseQuest()

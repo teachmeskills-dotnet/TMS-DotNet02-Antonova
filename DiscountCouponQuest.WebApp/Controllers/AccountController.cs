@@ -51,9 +51,9 @@ namespace DiscountCouponQuest.WebApp.Controllers
         /// </summary>
         /// <returns>RegisterCustomer View</returns>
         [HttpGet]
-        public IActionResult RegisterCustomer()
+        public IActionResult _RegisterCustomer()
         {
-            return View();
+            return PartialView();
         }
 
         /// <summary>
@@ -61,9 +61,9 @@ namespace DiscountCouponQuest.WebApp.Controllers
         /// </summary>
         /// <returns>RegisterProvider View</returns>
         [HttpGet]
-        public IActionResult RegisterProvider()
+        public IActionResult _RegisterProvider()
         {
-            return View();
+            return PartialView();
         }
 
         /// <summary>
@@ -71,9 +71,14 @@ namespace DiscountCouponQuest.WebApp.Controllers
         /// </summary>
         /// <returns>Login View</returns>
         [HttpGet]
-        public IActionResult Login(string returnUrl = null)
+        public IActionResult _Login(string returnUrl = null)
         {
-            return View(new LoginViewModel { ReturnUrl = returnUrl });
+            return PartialView(new LoginViewModel { ReturnUrl = returnUrl });
+        }
+        [HttpGet]
+        public IActionResult LoginModel()
+        {
+            return View();
         }
 
         /// <summary>
@@ -94,9 +99,6 @@ namespace DiscountCouponQuest.WebApp.Controllers
                     await EmailSend(model, user);
                     var customer = new CustomerBLL(user.Id)
                     {
-                        FirstName = model.FirstName,
-                        MiddleName = model.MiddleName,
-                        LastName = model.LastName,
                         PhoneNumber = model.PhoneNumber,
                         UserId = user.Id
                     };
@@ -111,7 +113,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
                     }
                 }
             }
-            return View(model);
+            return View("LoginModel");
         }
 
         /// <summary>
@@ -132,9 +134,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
                     await EmailSend(model, user);
                     var provider = new ProviderBLL(user.Id)
                     {
-                        Name = model.Name,
                         SerialNumber = model.SerialNumber,
-                        Description = model.Description,
                         UserId = user.Id
                     };
                     await AddProviderToDataBase(user, provider);
@@ -148,7 +148,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
                     }
                 }
             }
-            return View(model);
+            return View("LoginModel");
         }
         [HttpGet]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
@@ -200,7 +200,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
                     ModelState.AddModelError("", "Неправильный логин и (или) пароль");
                 }
             }
-            return View(model);
+            return View("LoginModel");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
