@@ -39,7 +39,7 @@ namespace DiscountCouponQuest.BLL.Services
             await _repository.AddAsync(dataModel);
             await _repository.SaveChangesAsync();
         }
-        public async void Edit(Quest quest)
+        public async Task Edit(Quest quest)
         {
             var questToEdit = await _repository.GetEntityAsync(q => q.Id.Equals(quest.Id));
             questToEdit.Image = quest.Image;

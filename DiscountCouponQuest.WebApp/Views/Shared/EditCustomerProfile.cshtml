@@ -1,0 +1,43 @@
+﻿@model CustomerProfileViewModel
+<form method="post" asp-controller="Profile" asp-action="EditCustomerProfile" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly"></div>
+    <input asp-for="Id" hidden />
+    <div>
+        <label asp-for="ImageFile"></label><br />
+        <input asp-for="ImageFile" />
+        <span asp-validation-for="ImageFile"></span>
+    </div>
+    <div>
+        <label asp-for="FirstName"></label><br />
+        <input asp-for="FirstName" />
+        <span asp-validation-for="FirstName"></span>
+    </div>
+    <div>
+        <label asp-for="MiddleName"></label><br />
+        <input asp-for="MiddleName" />
+        <span asp-validation-for="MiddleName"></span>
+    </div>
+    <div>
+        <label asp-for="LastName"></label><br />
+        <input asp-for="LastName" />
+        <span asp-validation-for="LastName"></span>
+    </div>
+    <div>
+        <label asp-for="PhoneNumber"></label><br />
+        <input asp-for="PhoneNumber" />
+        <span asp-validation-for="PhoneNumber"></span>
+    </div>
+    <fieldset disabled>
+        <div class="form-group">
+            <label asp-for="Bonus">Бонусы</label>
+            <input asp-for="Bonus" class="form-control">
+        </div>
+    </fieldset>
+    <div class="form-group">
+        <label asp-for="Cash">Личный счет</label>
+        <input asp-for="Cash" class="form-control">
+    </div>
+    <div>
+        <input type="submit" value="Сохранить" />
+    </div>
+</form>

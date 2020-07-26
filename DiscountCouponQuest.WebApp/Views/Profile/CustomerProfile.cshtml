@@ -1,0 +1,80 @@
+﻿@model CustomerProfileViewModel
+
+<div class="container emp-profile">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="profile-img">
+                <img style='width:100%; height:100%;' src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Image))" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="profile-head d-flex flex-row">
+                <h5 class="user-name flex-grow-1">
+                    @Html.DisplayFor(model => model.FirstName)
+                </h5>
+                <a class="profile-edit-btn" asp-controller="Profile" asp-action="EditCustomerProfile" name="btnAddMore">Редактировать профиль</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="profile-work">
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="tab-content profile-tab" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Имя</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="user-name">@Html.DisplayFor(m => m.FirstName)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Отчество</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="user-middleName"> @Html.DisplayFor(m => m.MiddleName)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Фамилия</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="user-lastname">@Html.DisplayFor(m => m.LastName)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Телефон</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="user-phone">@Html.DisplayFor(m => m.PhoneNumber)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Бонусы</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="user-bonus">@Html.DisplayFor(m => m.Bonus)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Личный счет</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="user-cash">@Html.DisplayFor(m => m.Cash)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

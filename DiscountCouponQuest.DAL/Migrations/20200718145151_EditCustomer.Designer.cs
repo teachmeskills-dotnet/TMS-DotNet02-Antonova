@@ -4,14 +4,16 @@ using DiscountCouponQuest.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DiscountCouponQuest.DAL.Migrations
 {
     [DbContext(typeof(DiscountCouponQuestDbContext))]
-    partial class DiscountCouponQuestDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200718145151_EditCustomer")]
+    partial class EditCustomer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,9 +36,6 @@ namespace DiscountCouponQuest.DAL.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");

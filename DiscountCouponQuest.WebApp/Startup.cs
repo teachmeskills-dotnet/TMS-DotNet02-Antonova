@@ -27,7 +27,7 @@ namespace DiscountCouponQuest.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<DiscountCouponQuestDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlConnection")), ServiceLifetime.Transient);
+            services.AddDbContext<DiscountCouponQuestDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
             services.AddIdentity<User, IdentityRole>()
             .AddEntityFrameworkStores<DiscountCouponQuestDbContext>().AddDefaultTokenProviders();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -35,6 +35,7 @@ namespace DiscountCouponQuest.WebApp
             services.AddScoped<CustomersService>();
             services.AddScoped<ProviderService>();
             services.AddScoped<QuestService>();
+            services.AddScoped<PurchaseService>();
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

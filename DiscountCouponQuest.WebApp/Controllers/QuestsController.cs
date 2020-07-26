@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -53,7 +53,6 @@ namespace DiscountCouponQuest.WebApp.Controllers
             var user = await _userManager.FindByNameAsync(username);
             var provider = _providerService.GetProviderByUserId(user.Id);
             quest.ProviderId = provider.Id;
-
             if (makeQuest.ImageFile != null)
             {
                 byte[] imageData = null;
@@ -64,7 +63,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
                 quest.Image = imageData;
             }
             await _questService.AddAsync(quest);
-            return View();
+            return RedirectToAction("ChooseQuest");
         }
         [HttpGet]
         public IActionResult MakeQuest()
@@ -78,9 +77,15 @@ namespace DiscountCouponQuest.WebApp.Controllers
             var model = _mapper.Map<QuestViewModel>(quest);
             return View(model);
         }
+        public async Task<IActionResult> DetailsQuest(int id)
+        {
+            var quest = await _questService.GetQuestById(id);
+            var model = _mapper.Map<QuestViewModel>(quest);
+            return View(model);
+        }
         [HttpPost]
         [Authorize]
-        public IActionResult EditQuest(QuestViewModel editQuest)
+        public async Task<IActionResult> EditQuest(QuestViewModel editQuest)
         {
             var quest = _mapper.Map<Quest>(editQuest);
             if (editQuest.ImageFile != null)
@@ -92,7 +97,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
                 }
                 quest.Image = imageData;
             }
-            _questService.Edit(quest);
+            await _questService.Edit(quest);
             return RedirectToAction("ChooseQuest");
         }
         [HttpGet]

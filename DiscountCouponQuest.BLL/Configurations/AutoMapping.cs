@@ -15,9 +15,10 @@ namespace DiscountCouponQuest.BLL.Configurations
         public AutoMapping()
         {
             CreateMap<Customer, CustomerDAL>().ReverseMap();
-            CreateMap<Quest, QuestDAL>();
-            CreateMap<QuestDAL, Quest>();
+            CreateMap<Quest, QuestDAL>().ReverseMap();
             CreateMap<Provider, ProviderDAL>().ReverseMap();
+            CreateMap<CustomerProfile, CustomerDAL>();
+            CreateMap<CustomerDAL, CustomerProfile>().ReverseMap();
         }
     }
 }

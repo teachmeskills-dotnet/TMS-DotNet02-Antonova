@@ -137,7 +137,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
                         UserId = user.Id
                     };
                     await AddProviderToDataBase(user, provider);
-                    return Content("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме");
+                     return Content("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме");
                 }
                 else
                 {

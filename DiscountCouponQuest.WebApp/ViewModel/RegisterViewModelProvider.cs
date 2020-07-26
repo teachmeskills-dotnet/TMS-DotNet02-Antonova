@@ -9,11 +9,5 @@ namespace DiscountCouponQuest.WebApp.ViewModel
     public class RegisterViewModelProvider : RegisterViewModelBase
     {
 
-        /// <summary>
-        /// Серийный номер
-        /// </summary>
-        [Required]
-        public string SerialNumber { get; set; }
-
     }
 }

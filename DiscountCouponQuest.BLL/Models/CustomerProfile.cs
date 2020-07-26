@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-using Microsoft.AspNetCore.Http;
-
-namespace DiscountCouponQuest.WebApp.ViewModel
+namespace DiscountCouponQuest.BLL.Models
 {
-    public class CustomerProfileViewModel
+    public class CustomerProfile
     {
         /// <summary>
         /// Имя
@@ -16,7 +13,6 @@ namespace DiscountCouponQuest.WebApp.ViewModel
         /// <summary>
         /// Изображение
         /// </summary>
-        public IFormFile ImageFile { get; set; }
         public byte[] Image { get; set; }
         /// <summary>
         /// Отчество

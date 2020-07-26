@@ -1,0 +1,74 @@
+﻿@model DiscountCouponQuest.WebApp.ViewModel.QuestViewModel
+
+@{
+    ViewData["Title"] = "DetailsQuest";
+}
+<div>
+    <h3><img style='width:100%; height:100%;' src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Image))" /></h3>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UniqueCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UniqueCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Distance)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Distance)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Bonus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Bonus)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Start)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Start)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Finish)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Finish)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-controller="Quests" asp-action="ChooseQuest">Вернуться к списку квестов</a>
+    <a asp-controller="Purchase" asp-action="BuyQuest" asp-route-questId="@Model.Id">Купить</a>
+</div>

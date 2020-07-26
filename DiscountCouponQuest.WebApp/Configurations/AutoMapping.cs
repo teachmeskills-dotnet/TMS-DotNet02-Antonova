@@ -8,6 +8,8 @@ using AutoMapper;
 using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.WebApp.ViewModel;
 
+
+
 namespace DiscountCouponQuest.WebApp.Configurations
 {
     /// <summary>
@@ -18,6 +20,9 @@ namespace DiscountCouponQuest.WebApp.Configurations
         public AutoMapping()
         {
             CreateMap<QuestViewModel, Quest>().ReverseMap();
+            CreateMap<CustomerProfileViewModel, Customer>().ReverseMap();
+            CreateMap<CustomerProfileViewModel, CustomerProfile>().ReverseMap();
+
         }
     }
 }
