@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -106,6 +106,10 @@ namespace DiscountCouponQuest.WebApp.Controllers
         {
             await _questService.DeleteQuest(id);
             return RedirectToAction("ChooseQuest");
+        }
+        public IActionResult GoogleMap()
+        {
+            return View();
         }
     }
 }

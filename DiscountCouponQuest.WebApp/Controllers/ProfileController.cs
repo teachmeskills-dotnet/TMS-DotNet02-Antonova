@@ -24,11 +24,13 @@ namespace DiscountCouponQuest.WebApp.Controllers
         private readonly UserManager<User> _userManager;
         private readonly CustomersService _customerService;
         private readonly IMapper _mapper;
-        public ProfileController(IMapper mapper, UserManager<User> userManager, CustomersService customerService)
+        private readonly QuestHistoryService _questHistoryService;
+        public ProfileController(IMapper mapper, UserManager<User> userManager, CustomersService customerService, QuestHistoryService questHistoryService)
         {
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _customerService = customerService ?? throw new ArgumentNullException(nameof(customerService));
+            _questHistoryService = questHistoryService ?? throw new ArgumentNullException(nameof(questHistoryService));
         }
         public async Task<IActionResult> CustomerProfile()
         {
@@ -69,6 +71,22 @@ namespace DiscountCouponQuest.WebApp.Controllers
             }
             await _customerService.Edit(profile);
             return RedirectToAction("CustomerProfile");
+        }
+        public async Task<IActionResult> QuestHistory()
+        {
+            var username = User.Identity.Name;
+            var user = await _userManager.FindByNameAsync(username);
+            var listOfQuests = await _questHistoryService.GetAllCustomerQuests(user.Id);
+            var mapQuest = _mapper.Map<List<QuestViewModel>>(listOfQuests);
+            return View(mapQuest);
+        }
+        public async Task<IActionResult> StartQuest(int questHistoryId)
+        {
+            var username = User.Identity.Name;
+            var user = await _userManager.FindByNameAsync(username);
+            var customer = await _customerService.GetCustomerByUserId(user.Id);
+            await _questHistoryService.AddDateToStartQuest(user.Id, questHistoryId);
+            return RedirectToAction("CustomerProfile", "Profile");
         }
 
     }

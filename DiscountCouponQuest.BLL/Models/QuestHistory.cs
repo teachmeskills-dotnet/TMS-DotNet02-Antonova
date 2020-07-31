@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace DiscountCouponQuest.DAL.Models
+namespace DiscountCouponQuest.BLL.Models
 {
     public class QuestHistory
     {
         public int Id { get; set; }
-        public DateTime? QuestStart { get; set; }
+        public DateTime QuestStart { get; set; }
         public bool IsPassed { get; set; }
 
         public int QuestId { get; set; }

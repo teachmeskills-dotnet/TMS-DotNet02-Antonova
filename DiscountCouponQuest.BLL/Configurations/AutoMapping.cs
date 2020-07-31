@@ -4,6 +4,8 @@ using CustomerDAL = DiscountCouponQuest.DAL.Models.Customer;
 using QuestDAL = DiscountCouponQuest.DAL.Models.Quest;
 using ProviderDAL = DiscountCouponQuest.DAL.Models.Provider;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace DiscountCouponQuest.BLL.Configurations
 {

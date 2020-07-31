@@ -4,14 +4,16 @@ using DiscountCouponQuest.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DiscountCouponQuest.DAL.Migrations
 {
     [DbContext(typeof(DiscountCouponQuestDbContext))]
-    partial class DiscountCouponQuestDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200728114748_RenameSomeProperties")]
+    partial class RenameSomeProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

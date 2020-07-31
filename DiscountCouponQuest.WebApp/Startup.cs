@@ -36,6 +36,7 @@ namespace DiscountCouponQuest.WebApp
             services.AddScoped<ProviderService>();
             services.AddScoped<QuestService>();
             services.AddScoped<PurchaseService>();
+            services.AddScoped<QuestHistoryService>();
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
