@@ -4,22 +4,29 @@
     {
         <div class="col-4">
             <a class="card" asp-controller="Quests" asp-action="DetailsQuest" asp-route-id="@quest.Id">
+                <img class="card-img-top" src="data:image/jpeg;base64,@(Convert.ToBase64String(quest.Image))" />
                 <div class="card-body">
-                    <img style='width:100%; height:100%;' src="data:image/jpeg;base64,@(Convert.ToBase64String(quest.Image))" />
                     <p class="quest-name">@quest.Name</p>
                     <p class="card-text">@quest.Description</p>
-                    <div class="row">
-                        <div class="col-4">
-                            <p class="quest-discount">Длина маршрута: @quest.Distance</p>
+                </div>
+                <div class="card-footer inside-row card-stats">
+                    <div class="d-flex">
+                        <div class="col-4 border-right border-light">
+                            <div class="hw_100 d-flex align-items-center">
+                                <div class="quest-discount text-center my-auto">Длина маршрута: @quest.Distance</div>
+                            </div>
+                        </div>
+                        <div class="col-4 border-right border-light">
+                            <div class="hw_100 d-flex align-items-center">
+                                <div class="quest-time text-center my-auto">Время: @quest.Time</div>
+                            </div>
                         </div>
                         <div class="col-4">
-                            <p class="quest-time">Время: @quest.Time</p>
-                        </div>
-                        <div class="col-4">
-                            <p class="quest-price">Цена: @quest.Price</p>
+                            <div class="hw_100 d-flex align-items-center">
+                                <div class="quest-price text-center my-auto">Цена: @quest.Price</div>
+                            </div>
                         </div>
                     </div>
-
                     @if (User.IsInRole("Provider"))
                     {
                         <a class="btn btn-dark" role="button" asp-controller="Quests" asp-action="EditQuest" asp-route-id="@quest.Id">Редактировать</a>
@@ -29,5 +36,4 @@
             </a>
         </div>
     }
-
 </div>
