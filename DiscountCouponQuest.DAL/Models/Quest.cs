@@ -49,13 +49,21 @@ namespace DiscountCouponQuest.DAL.Models
         /// </summary>
         public int Bonus { get; set; }
         /// <summary>
-        /// Начало квеста
+        /// Страна
         /// </summary>
-        public string Start { get; set; }
+        public string Country { get; set; }
         /// <summary>
-        /// Конец квеста
+        /// Город
         /// </summary>
-        public string Finish { get; set; }
+        public string Town { get; set; }
+        /// <summary>
+        /// Улица
+        /// </summary>
+        public string Street { get; set; }
+        /// <summary>
+        /// Номер дома
+        /// </summary>
+        public string Number { get; set; }
 
         /// <summary>
         /// ID юридического лица

@@ -68,14 +68,31 @@ namespace DiscountCouponQuest.WebApp.ViewModel
         [Display(Name = "Бонусы")]
         public int Bonus { get; set; }
         /// <summary>
-        /// Начало квеста
+        /// Страна
         /// </summary>
-        [Display(Name = "Начало квеста")]
-        public string Start { get; set; }
+        [Display(Name = "Страна")]
+        public string Country { get; set; }
         /// <summary>
-        /// Конец квеста
+        /// Город
         /// </summary>
-        [Display(Name = "Конец квеста")]
-        public string Finish { get; set; }
+        [Display(Name = "Город")]
+        public string Town { get; set; }
+        /// <summary>
+        /// Улица
+        /// </summary>
+        [Display(Name = "Улица")]
+        public string Street { get; set; }
+        /// <summary>
+        /// Номер дома
+        /// </summary>
+        [Display(Name = "Номер дома")]
+        public string Number { get; set; }
+
+        public string Address {
+            get
+            {
+                return $"{Country}, {Town}, {Street}, {Number}";
+            }
+        }
     }
 }

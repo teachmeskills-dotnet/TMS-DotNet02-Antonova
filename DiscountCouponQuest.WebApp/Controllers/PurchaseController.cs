@@ -34,11 +34,18 @@ namespace DiscountCouponQuest.WebApp.Controllers
         }
         public async Task<IActionResult> BuyQuest(int questId)
         {
-            var username = User.Identity.Name;
-            var user = await _userManager.FindByNameAsync(username);
-            var customer = await _customerService.GetCustomerByUserId(user.Id);
-            await _purchaseService.BuyQuestService(questId, user.Id);
-            return RedirectToAction("CustomerProfile", "Profile");
+            try
+            {
+                var username = User.Identity.Name;
+                var user = await _userManager.FindByNameAsync(username);
+                var customer = await _customerService.GetCustomerByUserId(user.Id);
+                await _purchaseService.BuyQuestService(questId, user.Id);
+                return RedirectToAction("CustomerProfile", "Profile");
+            }
+            catch (Exception)
+            {
+                return Content("У вас недостаточно денег на счету");
+            }
         }
     }
 }

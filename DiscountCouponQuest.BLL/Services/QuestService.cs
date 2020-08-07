@@ -49,8 +49,10 @@ namespace DiscountCouponQuest.BLL.Services
             questToEdit.Distance = quest.Distance;
             questToEdit.Time = quest.Time;
             questToEdit.Price = quest.Price;
-            questToEdit.Start = quest.Start;
-            questToEdit.Finish = quest.Finish;
+            questToEdit.Country = quest.Country;
+            questToEdit.Town = quest.Town;
+            questToEdit.Street = quest.Street;
+            questToEdit.Number = quest.Number;
             questToEdit.Bonus = quest.Bonus;
             _repository.Update(questToEdit);
             await _repository.SaveChangesAsync();

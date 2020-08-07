@@ -34,19 +34,25 @@ namespace DiscountCouponQuest.BLL.Services
             var questToGet = await _repository.GetEntityAsync(q => q.Id.Equals(questId));
             var questPrice = questToGet.Price;
             var customerToGet = await _customerRepository.GetEntityAsync(q => q.UserId.Equals(userId));
-            customerToGet.Cash -= questPrice;
-            var questBonus = questToGet.Bonus;
-            customerToGet.Bonus += questBonus;
-            QuestHistoryDAL questHistoryDAL = new QuestHistoryDAL();
-            questHistoryDAL.CustomerId = customerToGet.Id;
-            questHistoryDAL.QuestId = questToGet.Id;
-            _repository.Update(questToGet);
-            _customerRepository.Update(customerToGet);
-            await _historyRepository.AddAsync(questHistoryDAL);
-            await _customerRepository.SaveChangesAsync();
-            await _historyRepository.SaveChangesAsync();
-            await _repository.SaveChangesAsync();
+            if (questToGet.Price<customerToGet.Cash)
+            {
+                customerToGet.Cash -= questPrice;
+                var questBonus = questToGet.Bonus;
+                customerToGet.Bonus += questBonus;
+                QuestHistoryDAL questHistoryDAL = new QuestHistoryDAL();
+                questHistoryDAL.CustomerId = customerToGet.Id;
+                questHistoryDAL.QuestId = questToGet.Id;
+                _repository.Update(questToGet);
+                _customerRepository.Update(customerToGet);
+                await _historyRepository.AddAsync(questHistoryDAL);
+                await _customerRepository.SaveChangesAsync();
+                await _historyRepository.SaveChangesAsync();
+                await _repository.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception("У вас недостаточно денег на счету");
+            }
         }
-
     }
 }
