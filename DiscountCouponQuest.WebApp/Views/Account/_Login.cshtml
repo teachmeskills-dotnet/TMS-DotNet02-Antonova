@@ -5,16 +5,16 @@
         <div class="md-form form-sm mb-5">
             <i class="fas fa-envelope prefix"></i>
             <input type="email" id="modalLRInput10" class="form-control form-control-sm validate" asp-for="Email">
-            <label data-error="wrong" data-success="right" for="modalLRInput10" asp-for="Email">Your email</label>
+            <label data-error="wrong" data-success="right" for="modalLRInput10" asp-for="Email"> Ваш Email</label>
             <span asp-validation-for="Email"></span>
         </div>
         <div class="md-form form-sm mb-4">
             <input type="password" id="modalLRInput11" class="form-control form-control-sm validate" asp-for="Password">
-            <label data-error="wrong" data-success="right" for="modalLRInput11" asp-for="Password">Your password</label>
+            <label data-error="wrong" data-success="right" for="modalLRInput11" asp-for="Password">Ваш пароль</label>
             <span asp-validation-for="Password"></span>
         </div>
         <div class="text-center mt-2">
-            <button class="btn btn-info" asp-controller="Account" asp-action="Login">Log in <i class="fas fa-sign-in ml-1"></i></button>
+            <button class="btn btn-info" asp-controller="Account" asp-action="Login">Войти<i class="fas fa-sign-in ml-1"></i></button>
         </div>
     </div>
 </form>

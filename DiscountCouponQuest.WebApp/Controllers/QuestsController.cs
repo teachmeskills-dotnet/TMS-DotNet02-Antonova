@@ -45,7 +45,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             return View(mapQuest);
         }
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Provider")]
         public async Task<IActionResult> MakeQuest(QuestViewModel makeQuest)
         {
             var quest = _mapper.Map<Quest>(makeQuest);
@@ -84,7 +84,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             return View(model);
         }
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Provider")]
         public async Task<IActionResult> EditQuest(QuestViewModel editQuest)
         {
             var quest = _mapper.Map<Quest>(editQuest);
@@ -96,8 +96,12 @@ namespace DiscountCouponQuest.WebApp.Controllers
                     imageData = binaryReader.ReadBytes((int)editQuest.ImageFile.Length);
                 }
                 quest.Image = imageData;
+                await _questService.Edit(quest);
             }
-            await _questService.Edit(quest);
+            else
+            {
+                editQuest.Image = quest.Image;
+            }
             return RedirectToAction("ChooseQuest");
         }
         [HttpGet]

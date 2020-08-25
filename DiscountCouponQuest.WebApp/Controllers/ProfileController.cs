@@ -71,7 +71,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             }
             await _customerService.Edit(profile);
             return RedirectToAction("CustomerProfile");
-        }
+                                                        }
         public async Task<IActionResult> QuestHistory()
         {
             var username = User.Identity.Name;

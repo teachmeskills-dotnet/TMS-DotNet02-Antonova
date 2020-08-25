@@ -3,76 +3,50 @@
 @{
     ViewData["Title"] = "DetailsQuest";
 }
-<div>
-    <h3><img style='width:100%; height:100%;' src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Image))" /></h3>
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Time)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Time)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Distance)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Distance)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bonus)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bonus)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Country)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Town)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Town)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Street)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Street)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Number)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Number)
-        </dd>
-    </dl>
-</div>
+    <div>
+        <h3>
+            <div class='imgblock'>
+                <img style='width:80%; height:80%;' src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Image))" />
+                <span>@Model.Name</span>
+            </div>
+        </h3>
+        <div class="d-flex details-text">
+            <div class="col-4">
+                <div class="hw_100 d-flex align-items-center">
+                    <div>
+                        <h1>Время</h1>
+                        @Model.Time
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="hw_100 d-flex align-items-center">
+                    <div>
+                        <h1 class="det-h1">Длина маршрута</h1>
+                        @Model.Distance
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="hw_100 d-flex align-items-center">
+                    <div>
+                        <h1>Цена</h1>
+                        @Model.Price
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="p-details">
+            @Model.Description
+        </p>
+        <h6>Бонусы : @Model.Bonus</h6>
+        <h6>Начало квеста : @Model.Street</h6>
+    </div>
 <div id="map"></div>
 <style>
     #map {
-        height:400px;
-        width:100%;
+        height: 400px;
+        width: 80%;
     }
 </style>
 <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>

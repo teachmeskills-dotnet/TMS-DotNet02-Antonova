@@ -27,12 +27,12 @@
                             </div>
                         </div>
                     </div>
-                    @if (User.IsInRole("Provider"))
-                    {
-                        <a class="btn btn-dark" role="button" asp-controller="Quests" asp-action="EditQuest" asp-route-id="@quest.Id">Редактировать</a>
-                        <a class="btn btn-dark" role="button" asp-controller="Quests" asp-action="DeleteQuest" asp-route-id="@quest.Id">Удалить</a>
-                    }
                 </div>
+                @if (User.IsInRole("Provider"))
+                {
+                    <a class="btn btn-dark" role="button" asp-controller="Quests" asp-action="EditQuest" asp-route-id="@quest.Id">Редактировать</a>
+                    <a class="btn btn-dark" role="button" asp-controller="Quests" asp-action="DeleteQuest" asp-route-id="@quest.Id">Удалить</a>
+                }
             </a>
         </div>
     }

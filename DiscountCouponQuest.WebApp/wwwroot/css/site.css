@@ -7,7 +7,7 @@
     margin-top: 3%;
     margin-bottom: 3%;
     border-radius: 0.5rem;
-    background: #fff;
+    background: radial-gradient(ellipse farthest-corner at right bottom, #fedb37 0%, #FDB931 8%, #9f7928 30%, #8a6e2f 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #ffffff 0%, #ffffac 8%, #d1b464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
 }
 
 .profile-img {
@@ -46,14 +46,17 @@
 }
 
 .profile-edit-btn {
-    border: none;
-    border-radius: 1.5rem;
-    width: 211px;
-    padding: 2%;
-    font-weight: 600;
-    color: #6c757d;
-    cursor: pointer;
-    background-color: #efefef;
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    padding: 15px;
+    font-size: 14px;
+    line-height: 7px;
 }
 
 .proile-rating {
@@ -110,8 +113,7 @@
 }
 
 .profile-tab p {
-    font-weight: 600;
-    color: #0062cc;
+    font-weight: 300;
 }
 
 .row {
@@ -155,7 +157,7 @@
 }
 
 .history-card {
-    background:linear-gradient(#F7971E, #FFD200);
+    background: linear-gradient(#F7971E, #FFD200);
     width: 250px;
     min-height: calc(250px * 1.618);
     display: -webkit-box;
@@ -224,4 +226,71 @@
     padding: 10px 30px;
     color: #FFD200;
     font-family: 'Noto Sans KR', sans-serif;
+}
+
+.modal-c-tabs {
+    color: white;
+}
+
+.details-row {
+    color: white;
+}
+
+.make-text {
+    color: white;
+}
+
+.make-h2 {
+    color: white;
+}
+
+.d-flex-details {
+    padding: 7px;
+}
+
+.det-h1 {
+    margin-left: -89px;
+}
+
+.details-text {
+    color: white;
+}
+
+.imgblock {
+    position: relative;
+}
+
+    .imgblock span {
+        background: rgba(0,0,0,0.7);
+        color: lightyellow;
+        border-radius: 2px;
+        position: absolute;
+        right: 222px;
+        bottom: 2px;
+        font-size: 45px;
+        padding: 3px 5px;
+    }
+
+.p-details {
+    color: #F7971E;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+h6 {
+    color: #F7971E;
+}
+
+.customer-img {
+    border-style: groove;
+}
+
+.edit-quest {
+    color: white;
+}
+.customer-profile-edit {
+    color: white;
 }

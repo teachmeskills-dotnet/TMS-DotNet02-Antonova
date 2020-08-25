@@ -1,7 +1,8 @@
 ﻿@model QuestViewModel
-<h2>Создать квест</h2>
+<h2 class="make-h2">Создать квест</h2>
 <form method="post" asp-controller="Quests" asp-action="MakeQuest" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly"></div>
+    <div class="make-text">
     <div>
         <label asp-for="Name"></label><br />
         <input asp-for="Name" />
@@ -66,5 +67,6 @@
     <div>
         <input type="submit" value="Создать" />
     </div>
+        </div>
 </form>
 
