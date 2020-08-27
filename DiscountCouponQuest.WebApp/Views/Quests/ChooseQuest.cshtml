@@ -1,5 +1,9 @@
 ﻿@model List<QuestViewModel>
 <div class="row">
+    <form class="form-inline mr-auto col-12 search-form">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" name="searchString" aria-label="Search">
+        <button class="btn peach-gradient btn-rounded btn-sm my-0 waves-effect waves-light search-btn" type="submit" asp-controller="Quests" asp-action="SearchQuest">Поиск квеста</button>
+    </form>
     @foreach (var quest in Model)
     {
         <div class="col-4">

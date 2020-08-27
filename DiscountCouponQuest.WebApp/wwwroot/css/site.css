@@ -291,6 +291,15 @@ h6 {
 .edit-quest {
     color: white;
 }
+
 .customer-profile-edit {
     color: white;
+}
+
+.search-form {
+    margin: 10px;
+}
+
+.search-btn {
+    background: linear-gradient(#F7971E, #FFD200);
 }

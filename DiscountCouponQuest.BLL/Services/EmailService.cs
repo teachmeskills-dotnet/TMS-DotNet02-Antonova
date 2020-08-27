@@ -32,7 +32,7 @@ namespace DiscountCouponQuest.BLL.Services
             this.password = password;
             this.fromEmailAddress = fromEmailAddress;
             this.disconnect = disconnect;
-        }
+        }   
 
         /// <summary>
         /// Отправка e-mail с помощью SMTP-клиента

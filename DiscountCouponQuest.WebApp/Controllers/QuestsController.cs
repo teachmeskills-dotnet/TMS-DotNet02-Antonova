@@ -13,6 +13,7 @@ using DiscountCouponQuest.WebApp.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace DiscountCouponQuest.WebApp.Controllers
 {
@@ -114,6 +115,21 @@ namespace DiscountCouponQuest.WebApp.Controllers
         public IActionResult GoogleMap()
         {
             return View();
+        }
+
+        public async Task<IActionResult> SearchQuest(string searchString)
+        {
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var listOfQuests = _questService.GetAll();
+                var questToSearch = listOfQuests.Where(q => q.Name.Contains(searchString, StringComparison.InvariantCultureIgnoreCase));
+                var mapQuest = _mapper.Map<List<QuestViewModel>>(questToSearch);
+                return View("ChooseQuest", mapQuest);
+            }
+            else
+            {
+                return Content("Такого квеста не существует. Повторите поиск");
+            }
         }
     }
 }
