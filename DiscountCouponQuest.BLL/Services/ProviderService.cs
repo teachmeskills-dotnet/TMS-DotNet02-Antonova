@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.Common.Interfaces;
+using DiscountCouponQuest.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using ProviderDAL = DiscountCouponQuest.DAL.Models.Provider;
 
 namespace DiscountCouponQuest.BLL.Services
 {
@@ -14,23 +14,23 @@ namespace DiscountCouponQuest.BLL.Services
     /// </summary>
     public class ProviderService
     {
-        private readonly IRepository<ProviderDAL> _repository;
+        private readonly IRepository<Provider> _repository;
         private readonly IMapper _mapper;
 
-        public ProviderService(IRepository<ProviderDAL> repository, IMapper mapper)
+        public ProviderService(IRepository<Provider> repository, IMapper mapper)
         {
-            _repository = repository;
-            _mapper = mapper;
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task AddAsync(Provider provider)
+        public async Task AddAsync(ProviderDto provider)
         {
-            var dataModel = _mapper.Map<ProviderDAL>(provider);
+            var dataModel = _mapper.Map<Provider>(provider);
             await _repository.AddAsync(dataModel);
             await _repository.SaveChangesAsync();
         }
 
-        public Provider GetProviderByUserId(string userId)
+        public ProviderDto GetProviderByUserId(string userId)
         {
             var providers = _repository.GetAll().AsNoTracking().ToList();
             var providerDataModel = providers.FirstOrDefault(c => c.UserId.Equals(userId, StringComparison.InvariantCultureIgnoreCase));
@@ -39,7 +39,7 @@ namespace DiscountCouponQuest.BLL.Services
                 throw new Exception();
             }
 
-            var provider = _mapper.Map<Provider>(providerDataModel);
+            var provider = _mapper.Map<ProviderDto>(providerDataModel);
             provider.Id = providerDataModel.Id;
             return provider;
         }

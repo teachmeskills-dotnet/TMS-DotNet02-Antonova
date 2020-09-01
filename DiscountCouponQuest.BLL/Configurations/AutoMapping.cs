@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using DiscountCouponQuest.BLL.Models;
-using CustomerDAL = DiscountCouponQuest.DAL.Models.Customer;
-using ProviderDAL = DiscountCouponQuest.DAL.Models.Provider;
-using QuestDAL = DiscountCouponQuest.DAL.Models.Quest;
+using DiscountCouponQuest.DAL.Models;
 
 namespace DiscountCouponQuest.BLL.Configurations
 {
@@ -13,11 +11,10 @@ namespace DiscountCouponQuest.BLL.Configurations
     {
         public AutoMapping()
         {
-            CreateMap<Customer, CustomerDAL>().ReverseMap();
-            CreateMap<Quest, QuestDAL>().ReverseMap();
-            CreateMap<Provider, ProviderDAL>().ReverseMap();
-            CreateMap<CustomerProfile, CustomerDAL>();
-            CreateMap<CustomerDAL, CustomerProfile>().ReverseMap();
+            CreateMap<CustomerDto, Customer>().ReverseMap();
+            CreateMap<QuestDto, Quest>().ReverseMap();
+            CreateMap<ProviderDto, Provider>().ReverseMap();
+            CreateMap<Customer, CustomerProfileDto>().ReverseMap();
         }
     }
 }

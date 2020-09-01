@@ -3,7 +3,7 @@
     /// <summary>
     /// Квест
     /// </summary>
-    public class Quest
+    public class QuestDto
     {
         /// <summary>
         /// ID
@@ -81,6 +81,6 @@
         /// </summary>
         public int ProviderId { get; set; }
 
-        public Provider Provider { get; set; }
+        public ProviderDto Provider { get; set; }
     }
 }

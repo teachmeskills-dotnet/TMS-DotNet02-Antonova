@@ -3,9 +3,9 @@
     /// <summary>
     /// Юридическое лицо
     /// </summary>
-    public class Provider
+    public class ProviderDto
     {
-        public Provider(string id)
+        public ProviderDto(string id)
         {
             UserId = id;
         }
@@ -20,7 +20,7 @@
         /// </summary>
         public string UserId { get; set; }
 
-        public Provider()
+        public ProviderDto()
         {
         }
     }

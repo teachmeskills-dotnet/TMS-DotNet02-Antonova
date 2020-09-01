@@ -1,15 +1,12 @@
-﻿using DiscountCouponQuest.BLL.Services;
-using DiscountCouponQuest.DAL;
+﻿using DiscountCouponQuest.BLL.Interfaces;
+using DiscountCouponQuest.BLL.Models;
+using DiscountCouponQuest.BLL.Services;
 using DiscountCouponQuest.DAL.Models;
-using DiscountCouponQuest.WebApp.Configurations;
 using DiscountCouponQuest.WebApp.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
-using CustomerBLL = DiscountCouponQuest.BLL.Models.Customer;
-using ProviderBLL = DiscountCouponQuest.BLL.Models.Provider;
 
 namespace DiscountCouponQuest.WebApp.Controllers
 {
@@ -20,11 +17,9 @@ namespace DiscountCouponQuest.WebApp.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly DiscountCouponQuestDbContext _dbContext;
-        private readonly EmailSettings _settings;
         private readonly CustomersService _customersService;
         private readonly ProviderService _providersService;
+        private readonly IEmailService _emailService;
 
         /// <summary>
         /// Конструктор 
@@ -34,15 +29,13 @@ namespace DiscountCouponQuest.WebApp.Controllers
         /// <param name="roleManager"></param>
         /// <param name="dbContext"></param>
         /// <param name="setting"></param>
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager, DiscountCouponQuestDbContext dbContext, IOptions<EmailSettings> setting, CustomersService customersService, ProviderService providerService)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, CustomersService customersService, ProviderService providerService, IEmailService emailService)
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
-            _roleManager = roleManager ?? throw new ArgumentNullException(nameof(roleManager));
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            _settings = setting.Value ?? throw new ArgumentNullException(nameof(setting));
             _customersService = customersService ?? throw new ArgumentNullException(nameof(customersService));
             _providersService = providerService ?? throw new ArgumentNullException(nameof(providerService));
+            _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
         }
 
         /// <summary>
@@ -97,7 +90,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
                 if (result.Succeeded)
                 {
                     await EmailSend(model, user);
-                    var customer = new CustomerBLL(user.Id)
+                    var customer = new CustomerDto(user.Id)
                     {
                         PhoneNumber = model.PhoneNumber,
                         UserId = user.Id
@@ -132,7 +125,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
                 if (result.Succeeded)
                 {
                     await EmailSend(model, user);
-                    var provider = new ProviderBLL(user.Id)
+                    var provider = new ProviderDto(user.Id)
                     {
                         UserId = user.Id
                     };
@@ -224,8 +217,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             var callbackUrl = Url.Action("ConfirmEmail", "Account",
             new { userId = user.Id, code = code },
             protocol: HttpContext.Request.Scheme);
-            EmailService emailService = new EmailService(_settings.SMTPRef, _settings.Port, _settings.SSL, _settings.Password, _settings.FromEmailAddress, _settings.Disconnect);
-            await emailService.SendEmailAsync(model.Email, "Confirm your account", $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
+            await _emailService.SendEmailAsync(model.Email, "Confirm your account", $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
         }
 
         /// <summary>
@@ -234,7 +226,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
         /// <param name="user"></param>
         /// <param name="customer"></param>
         /// <returns></returns>
-        private async Task AddToDataBase(User user, CustomerBLL customer)
+        private async Task AddToDataBase(User user, CustomerDto customer)
         {
             await _customersService.AddAsync(customer);
             await _userManager.AddToRoleAsync(user, "Customer");
@@ -247,7 +239,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
         /// <param name="user"></param>
         /// <param name="provider"></param>
         /// <returns></returns>
-        private async Task AddProviderToDataBase(User user, ProviderBLL provider)
+        private async Task AddProviderToDataBase(User user, ProviderDto provider)
         {
             await _providersService.AddAsync(provider);
             await _userManager.AddToRoleAsync(user, "Provider");

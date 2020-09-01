@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace DiscountCouponQuest.BLL.Repository
 {
+    /// <inheritdoc cref="IRepository"/>
     public class Repository<T> : IRepository<T> where T : class
     {
         private readonly DbSet<T> _dbSet;
@@ -20,57 +21,31 @@ namespace DiscountCouponQuest.BLL.Repository
             _dbSet = context.Set<T>();
         }
 
-        /// <summary>
-        /// Add object in database.
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
         public async Task AddAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
         }
 
-        /// <summary>
-        /// Add new entities async.
-        /// </summary>
-        /// <param name="entities">Entity collection.</param>
         public async Task AddRangeAsync(IEnumerable<T> entities)
         {
             await _dbSet.AddRangeAsync(entities);
         }
 
-        /// <summary>
-        /// Remove object from database.
-        /// </summary>
-        /// <param name="entity"></param>
         public void Delete(T entity)
         {
             _dbSet.Remove(entity);
         }
 
-        /// <summary>
-        /// Remove all object from database.
-        /// </summary>
-        /// <param name="entity"></param>
         public void DeleteRange(IEnumerable<T> entity)
         {
             _dbSet.RemoveRange(entity);
         }
 
-        /// <summary>
-        /// Get all queries.
-        /// </summary>
-        /// <returns>IQueryable queries</returns>
         public IQueryable<T> GetAll()
         {
             return _dbSet.AsNoTracking();
         }
 
-        /// <summary>
-        /// Get entity async by predicate.
-        /// </summary>
-        /// <param name="predicate">LINQ predicate.</param>
-        /// <returns></returns>
         public async Task<T> GetEntityAsync(Expression<Func<T, bool>> predicate)
         {
             var model = await _dbSet.FirstOrDefaultAsync(predicate);
@@ -82,19 +57,11 @@ namespace DiscountCouponQuest.BLL.Repository
             return model;
         }
 
-        /// <summary>
-        /// Persists all updates to the data source async.
-        /// </summary>
-        /// <returns>Save object.</returns>
         public Task SaveChangesAsync()
         {
             return _context.SaveChangesAsync();
         }
 
-        /// <summary>
-        /// Update entity.
-        /// </summary>
-        /// <param name="entity">Entity object.</param>
         public void Update(T entity)
         {
             _context.Entry(entity).State = EntityState.Modified;

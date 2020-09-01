@@ -1,46 +1,46 @@
 ﻿using AutoMapper;
 using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.Common.Interfaces;
+using DiscountCouponQuest.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using CustomerDAL = DiscountCouponQuest.DAL.Models.Customer;
 
 namespace DiscountCouponQuest.BLL.Services
 {
     public class CustomersService
     {
-        private readonly IRepository<CustomerDAL> _repository;
+        private readonly IRepository<Customer> _repository;
         private readonly IMapper _mapper;
 
-        public CustomersService(IRepository<CustomerDAL> repository, IMapper mapper)
+        public CustomersService(IRepository<Customer> repository, IMapper mapper)
         {
-            _repository = repository;
-            _mapper = mapper;
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task AddAsync(Customer customer)
+        public async Task AddAsync(CustomerDto customer)
         {
-            var dataModel = _mapper.Map<CustomerDAL>(customer);
+            var dataModel = _mapper.Map<Customer>(customer);
             await _repository.AddAsync(dataModel);
             await _repository.SaveChangesAsync();
         }
 
-        public async Task<Customer> GetCustomerByUserId(string userId)
+        public async Task<CustomerDto> GetCustomerByUserId(string userId)
         {
-            var customers = _repository.GetAll().AsNoTracking().ToList();
+            var customers = await _repository.GetAll().AsNoTracking().ToListAsync();
             var customerDataModel = customers.FirstOrDefault(c => c.UserId.Equals(userId, StringComparison.InvariantCultureIgnoreCase));
             if (customerDataModel is null)
             {
                 throw new ArgumentNullException();
             }
-            var customer = _mapper.Map<Customer>(customerDataModel);
+            var customer = _mapper.Map<CustomerDto>(customerDataModel);
             customer.Id = customerDataModel.Id;
             return customer;
         }
 
-        public async Task Edit(CustomerProfile customer)
+        public async Task Edit(CustomerProfileDto customer)
         {
             var customerToEdit = await _repository.GetEntityAsync(q => q.Id.Equals(customer.Id));
             customerToEdit.Image = customer.Image;

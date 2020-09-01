@@ -37,9 +37,9 @@ namespace DiscountCouponQuest.WebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult ChooseQuest()
+        public async Task<IActionResult> ChooseQuestAsync()
         {
-            var listOfQuests = _questService.GetAll();
+            var listOfQuests = await _questService.GetAllAsync();
             var mapQuest = _mapper.Map<List<QuestViewModel>>(listOfQuests);
             return View(mapQuest);
         }
@@ -48,7 +48,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
         [Authorize(Roles = "Provider")]
         public async Task<IActionResult> MakeQuest(QuestViewModel makeQuest)
         {
-            var quest = _mapper.Map<Quest>(makeQuest);
+            var quest = _mapper.Map<QuestDto>(makeQuest);
             var username = User.Identity.Name;
             var user = await _userManager.FindByNameAsync(username);
             var provider = _providerService.GetProviderByUserId(user.Id);
@@ -91,7 +91,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
         [Authorize(Roles = "Provider")]
         public async Task<IActionResult> EditQuest(QuestViewModel editQuest)
         {
-            var quest = _mapper.Map<Quest>(editQuest);
+            var quest = _mapper.Map<QuestDto>(editQuest);
             if (editQuest.ImageFile != null)
             {
                 byte[] imageData = null;
@@ -126,7 +126,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
         {
             if (!String.IsNullOrEmpty(searchString))
             {
-                var listOfQuests = _questService.GetAll();
+                var listOfQuests = await _questService.GetAllAsync();
                 var questToSearch = listOfQuests.Where(q => q.Name.Contains(searchString, StringComparison.InvariantCultureIgnoreCase));
                 var mapQuest = _mapper.Map<List<QuestViewModel>>(questToSearch);
                 return View("ChooseQuest", mapQuest);

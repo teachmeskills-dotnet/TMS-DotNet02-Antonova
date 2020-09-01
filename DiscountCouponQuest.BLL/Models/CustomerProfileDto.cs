@@ -1,6 +1,6 @@
 ﻿namespace DiscountCouponQuest.BLL.Models
 {
-    public class CustomerProfile
+    public class CustomerProfileDto
     {
         /// <summary>
         /// Имя

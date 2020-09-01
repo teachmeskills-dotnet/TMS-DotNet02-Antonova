@@ -1,24 +1,22 @@
 ﻿using AutoMapper;
 using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.Common.Interfaces;
+using DiscountCouponQuest.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CustomerDAL = DiscountCouponQuest.DAL.Models.Customer;
-using QuestDAL = DiscountCouponQuest.DAL.Models.Quest;
-using QuestHistoryDAL = DiscountCouponQuest.DAL.Models.QuestHistory;
 
 namespace DiscountCouponQuest.BLL.Services
 {
     public class QuestHistoryService
     {
-        private readonly IRepository<QuestHistoryDAL> _repository;
-        private readonly IRepository<QuestDAL> _questRepository;
+        private readonly IRepository<QuestHistory> _repository;
+        private readonly IRepository<Quest> _questRepository;
         private readonly IMapper _mapper;
-        private readonly IRepository<CustomerDAL> _customerRepository;
+        private readonly IRepository<Customer> _customerRepository;
 
-        public QuestHistoryService(IRepository<QuestHistoryDAL> repository, IRepository<QuestDAL> questRepository, IMapper mapper, IRepository<CustomerDAL> customerRepository)
+        public QuestHistoryService(IRepository<QuestHistory> repository, IRepository<Quest> questRepository, IMapper mapper, IRepository<Customer> customerRepository)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
@@ -33,12 +31,12 @@ namespace DiscountCouponQuest.BLL.Services
             questHistoryToGet.QuestStart = DateTime.Now;
         }
 
-        public async Task<List<Quest>> GetAllCustomerQuests(string userId)
+        public async Task<List<QuestDto>> GetAllCustomerQuests(string userId)
         {
             var customerToGet = await _customerRepository.GetEntityAsync(q => q.UserId.Equals(userId));
             var questHistoryToGet = _repository.GetAll().Where(q => q.CustomerId.Equals(customerToGet.Id)).Select(q => q.QuestId).ToList();
             var customerQuests = _questRepository.GetAll().Where(q => questHistoryToGet.Contains(q.Id)).ToList();
-            var result = _mapper.Map<List<Quest>>(customerQuests);
+            var result = _mapper.Map<List<QuestDto>>(customerQuests);
             return result;
         }
     }

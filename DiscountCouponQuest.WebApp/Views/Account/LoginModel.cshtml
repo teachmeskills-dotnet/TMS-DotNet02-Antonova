@@ -22,13 +22,13 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade show active" id="panel7" role="tabpanel">
-                @await Html.PartialAsync("_Login")
+                <partial name="_Login" />
             </div>
             <div class="tab-pane fade" id="panel8" role="tabpanel">
-                @{await Html.RenderPartialAsync("_RegisterCustomer");}
+                <partial name="_RegisterCustomer" />
             </div>
             <div class="tab-pane fade" id="panel9" role="tabpanel">
-                @{await Html.RenderPartialAsync("_RegisterProvider");}
+                <partial name="_RegisterProvider" />
             </div>
         </div>
     </div>

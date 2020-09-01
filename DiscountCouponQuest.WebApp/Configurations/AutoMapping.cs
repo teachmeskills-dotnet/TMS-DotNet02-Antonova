@@ -13,10 +13,10 @@ namespace DiscountCouponQuest.WebApp.Configurations
     {
         public AutoMapping()
         {
-            CreateMap<QuestViewModel, Quest>().ReverseMap();
-            CreateMap<CustomerProfileViewModel, Customer>().ReverseMap();
-            CreateMap<CustomerProfileViewModel, CustomerProfile>().ReverseMap();
-            CreateMap<Task<List<Quest>>, List<QuestViewModel>>().ReverseMap();
+            CreateMap<QuestViewModel, QuestDto>().ReverseMap();
+            CreateMap<CustomerProfileViewModel, CustomerDto>().ReverseMap();
+            CreateMap<CustomerProfileViewModel, CustomerProfileDto>().ReverseMap();
+            CreateMap<Task<List<QuestDto>>, List<QuestViewModel>>().ReverseMap();
         }
     }
 }

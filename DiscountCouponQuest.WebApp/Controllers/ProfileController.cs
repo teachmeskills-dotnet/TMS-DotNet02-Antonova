@@ -56,7 +56,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             var username = User.Identity.Name;
             var user = await _userManager.FindByNameAsync(username);
             var customer = await _customerService.GetCustomerByUserId(user.Id);
-            var profile = _mapper.Map<CustomerProfile>(editCustomerProfile);
+            var profile = _mapper.Map<CustomerProfileDto>(editCustomerProfile);
             if (editCustomerProfile.ImageFile != null)
             {
                 byte[] imageData = null;
@@ -87,7 +87,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
         {
             var username = User.Identity.Name;
             var user = await _userManager.FindByNameAsync(username);
-            var customer = await _customerService.GetCustomerByUserId(user.Id);
+            _ = await _customerService.GetCustomerByUserId(user.Id);
             await _questHistoryService.AddDateToStartQuest(user.Id, questHistoryId);
             return RedirectToAction("CustomerProfile", "Profile");
         }

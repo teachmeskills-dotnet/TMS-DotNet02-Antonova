@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using DiscountCouponQuest.BLL.Interfaces;
 using DiscountCouponQuest.BLL.Repository;
 using DiscountCouponQuest.BLL.Services;
+using DiscountCouponQuest.Common.Helpers;
 using DiscountCouponQuest.Common.Interfaces;
 using DiscountCouponQuest.DAL;
 using DiscountCouponQuest.DAL.Models;
@@ -28,17 +30,27 @@ namespace DiscountCouponQuest.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<DiscountCouponQuestDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
             services.AddIdentity<User, IdentityRole>()
-            .AddEntityFrameworkStores<DiscountCouponQuestDbContext>().AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<DiscountCouponQuestDbContext>().AddDefaultTokenProviders();
+            services.AddDbContext<DiscountCouponQuestDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
+
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddAutoMapper(c => { c.AddProfile<AutoMappingBLL>(); c.AddProfile<AutoMapping>(); }, typeof(Startup));
+
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+            services.AddScoped<IEmailService, EmailService>();
+
             services.AddScoped<CustomersService>();
             services.AddScoped<ProviderService>();
             services.AddScoped<QuestService>();
             services.AddScoped<PurchaseService>();
             services.AddScoped<QuestHistoryService>();
-            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+
+            services.AddAutoMapper(c => 
+            { 
+                c.AddProfile<AutoMappingBLL>();
+                c.AddProfile<AutoMapping>();
+            },
+            typeof(Startup));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

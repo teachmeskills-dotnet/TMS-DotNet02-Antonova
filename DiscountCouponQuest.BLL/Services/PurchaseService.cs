@@ -1,25 +1,20 @@
-﻿using AutoMapper;
-using DiscountCouponQuest.Common.Interfaces;
+﻿using DiscountCouponQuest.Common.Interfaces;
+using DiscountCouponQuest.DAL.Models;
 using System;
 using System.Threading.Tasks;
-using CustomerDAL = DiscountCouponQuest.DAL.Models.Customer;
-using QuestDAL = DiscountCouponQuest.DAL.Models.Quest;
-using QuestHistoryDAL = DiscountCouponQuest.DAL.Models.QuestHistory;
 
 namespace DiscountCouponQuest.BLL.Services
 {
     public class PurchaseService
     {
-        private readonly IRepository<QuestDAL> _repository;
-        private readonly IRepository<CustomerDAL> _customerRepository;
-        private readonly IRepository<QuestHistoryDAL> _historyRepository;
-        private readonly IMapper _mapper;
+        private readonly IRepository<Quest> _repository;
+        private readonly IRepository<Customer> _customerRepository;
+        private readonly IRepository<QuestHistory> _historyRepository;
 
-        public PurchaseService(IRepository<QuestDAL> repository, IRepository<CustomerDAL> customerRepository, IRepository<QuestHistoryDAL> historyRepository, IMapper mapper)
+        public PurchaseService(IRepository<Quest> repository, IRepository<Customer> customerRepository, IRepository<QuestHistory> historyRepository)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _historyRepository = historyRepository ?? throw new ArgumentNullException(nameof(historyRepository));
         }
 
@@ -33,9 +28,11 @@ namespace DiscountCouponQuest.BLL.Services
                 customerToGet.Cash -= questPrice;
                 var questBonus = questToGet.Bonus;
                 customerToGet.Bonus += questBonus;
-                QuestHistoryDAL questHistoryDAL = new QuestHistoryDAL();
-                questHistoryDAL.CustomerId = customerToGet.Id;
-                questHistoryDAL.QuestId = questToGet.Id;
+                var questHistoryDAL = new QuestHistory
+                {
+                    CustomerId = customerToGet.Id,
+                    QuestId = questToGet.Id
+                };
                 _repository.Update(questToGet);
                 _customerRepository.Update(customerToGet);
                 await _historyRepository.AddAsync(questHistoryDAL);

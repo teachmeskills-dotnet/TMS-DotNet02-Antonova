@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.Common.Interfaces;
+using DiscountCouponQuest.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using QuestDAL = DiscountCouponQuest.DAL.Models.Quest;
 
 namespace DiscountCouponQuest.BLL.Services
 {
@@ -15,30 +15,30 @@ namespace DiscountCouponQuest.BLL.Services
     /// </summary>
     public class QuestService
     {
-        private readonly IRepository<QuestDAL> _repository;
+        private readonly IRepository<Quest> _repository;
         private readonly IMapper _mapper;
 
-        public QuestService(IRepository<QuestDAL> repository, IMapper mapper)
+        public QuestService(IRepository<Quest> repository, IMapper mapper)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public List<Quest> GetAll()
+        public async Task<List<QuestDto>> GetAllAsync()
         {
-            var allQuests = _repository.GetAll().AsNoTracking().ToList();
-            var result = _mapper.Map<List<Quest>>(allQuests);
+            var allQuests = await _repository.GetAll().AsNoTracking().ToListAsync();
+            var result = _mapper.Map<List<QuestDto>>(allQuests);
             return result;
         }
 
-        public async Task AddAsync(Quest quest)
+        public async Task AddAsync(QuestDto quest)
         {
-            var dataModel = _mapper.Map<QuestDAL>(quest);
+            var dataModel = _mapper.Map<Quest>(quest);
             await _repository.AddAsync(dataModel);
             await _repository.SaveChangesAsync();
         }
 
-        public async Task Edit(Quest quest)
+        public async Task Edit(QuestDto quest)
         {
             var questToEdit = await _repository.GetEntityAsync(q => q.Id.Equals(quest.Id));
             questToEdit.Image = quest.Image;
@@ -56,10 +56,10 @@ namespace DiscountCouponQuest.BLL.Services
             await _repository.SaveChangesAsync();
         }
 
-        public async Task<Quest> GetQuestById(int id)
+        public async Task<QuestDto> GetQuestById(int id)
         {
             var questToGet = await _repository.GetEntityAsync(q => q.Id.Equals(id));
-            var result = _mapper.Map<Quest>(questToGet);
+            var result = _mapper.Map<QuestDto>(questToGet);
             result.Id = questToGet.Id;
             return result;
         }

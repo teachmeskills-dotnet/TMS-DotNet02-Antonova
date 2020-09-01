@@ -1,8 +1,8 @@
 ﻿namespace DiscountCouponQuest.BLL.Models
 {
-    public class Customer
+    public class CustomerDto
     {
-        public Customer(string id)
+        public CustomerDto(string id)
         {
             UserId = id;
         }
@@ -18,7 +18,7 @@
 
         public string UserId { get; set; }
 
-        public Customer()
+        public CustomerDto()
         {
         }
     }
