@@ -15,6 +15,7 @@ namespace DiscountCouponQuest.BLL.Services
         private string password;
         private string fromEmailAddress;
         private bool disconnect;
+
         /// <summary>
         /// Конструктор для передачи параметров
         /// </summary>
@@ -32,7 +33,7 @@ namespace DiscountCouponQuest.BLL.Services
             this.password = password;
             this.fromEmailAddress = fromEmailAddress;
             this.disconnect = disconnect;
-        }   
+        }
 
         /// <summary>
         /// Отправка e-mail с помощью SMTP-клиента

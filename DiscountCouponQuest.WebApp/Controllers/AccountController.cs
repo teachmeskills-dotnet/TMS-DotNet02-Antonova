@@ -1,13 +1,13 @@
-﻿using DiscountCouponQuest.DAL;
+﻿using DiscountCouponQuest.BLL.Services;
+using DiscountCouponQuest.DAL;
 using DiscountCouponQuest.DAL.Models;
-using DiscountCouponQuest.BLL.Services;
+using DiscountCouponQuest.WebApp.Configurations;
 using DiscountCouponQuest.WebApp.ViewModel;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using DiscountCouponQuest.WebApp.Configurations;
-using Microsoft.Extensions.Options;
 using CustomerBLL = DiscountCouponQuest.BLL.Models.Customer;
 using ProviderBLL = DiscountCouponQuest.BLL.Models.Provider;
 
@@ -25,7 +25,6 @@ namespace DiscountCouponQuest.WebApp.Controllers
         private readonly EmailSettings _settings;
         private readonly CustomersService _customersService;
         private readonly ProviderService _providersService;
-
 
         /// <summary>
         /// Конструктор 
@@ -75,6 +74,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
         {
             return PartialView(new LoginViewModel { ReturnUrl = returnUrl });
         }
+
         [HttpGet]
         public IActionResult LoginModel()
         {
@@ -137,7 +137,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
                         UserId = user.Id
                     };
                     await AddProviderToDataBase(user, provider);
-                     return Content("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме");
+                    return Content("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме");
                 }
                 else
                 {
@@ -149,6 +149,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             }
             return View("LoginModel");
         }
+
         [HttpGet]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
@@ -167,6 +168,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             else
                 return View("Error");
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -201,6 +203,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             }
             return View("LoginModel");
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()

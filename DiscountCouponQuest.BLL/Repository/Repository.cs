@@ -74,7 +74,7 @@ namespace DiscountCouponQuest.BLL.Repository
         public async Task<T> GetEntityAsync(Expression<Func<T, bool>> predicate)
         {
             var model = await _dbSet.FirstOrDefaultAsync(predicate);
-            if(model != null)
+            if (model != null)
             {
                 _context.Entry(model).State = EntityState.Detached;
             }
@@ -97,8 +97,7 @@ namespace DiscountCouponQuest.BLL.Repository
         /// <param name="entity">Entity object.</param>
         public void Update(T entity)
         {
-           _context.Entry(entity).State = EntityState.Modified;
-          
+            _context.Entry(entity).State = EntityState.Modified;
         }
     }
 }

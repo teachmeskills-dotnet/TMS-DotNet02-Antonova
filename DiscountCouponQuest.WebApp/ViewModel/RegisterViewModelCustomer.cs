@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace DiscountCouponQuest.WebApp.ViewModel
+﻿namespace DiscountCouponQuest.WebApp.ViewModel
 {
     /// <summary>
     /// Регистрация пользователя

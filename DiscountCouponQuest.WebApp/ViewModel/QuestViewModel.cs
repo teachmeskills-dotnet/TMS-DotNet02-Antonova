@@ -1,6 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace DiscountCouponQuest.WebApp.ViewModel
 {
@@ -50,45 +49,53 @@ namespace DiscountCouponQuest.WebApp.ViewModel
         public string UniqueCode { get; set; }
 
         public byte[] Image { get; set; }
+
         /// <summary>
         /// Длмна маршрута
         /// </summary>
         [Display(Name = "Длина маршрута")]
         public string Distance { get; set; }
+
         /// <summary>
         /// Цена
         /// </summary>
         [Required]
         [Display(Name = "Цена")]
         public int Price { get; set; }
+
         /// <summary>
         /// Бонусы
         /// </summary>
         [Required]
         [Display(Name = "Бонусы")]
         public int Bonus { get; set; }
+
         /// <summary>
         /// Страна
         /// </summary>
         [Display(Name = "Страна")]
         public string Country { get; set; }
+
         /// <summary>
         /// Город
         /// </summary>
         [Display(Name = "Город")]
         public string Town { get; set; }
+
         /// <summary>
         /// Улица
         /// </summary>
         [Display(Name = "Улица")]
         public string Street { get; set; }
+
         /// <summary>
         /// Номер дома
         /// </summary>
         [Display(Name = "Номер дома")]
         public string Number { get; set; }
 
-        public string Address {
+        public string Address
+        {
             get
             {
                 return $"{Country}, {Town}, {Street}, {Number}";

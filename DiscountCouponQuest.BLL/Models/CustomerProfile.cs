@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DiscountCouponQuest.BLL.Models
+﻿namespace DiscountCouponQuest.BLL.Models
 {
     public class CustomerProfile
     {
@@ -10,30 +6,37 @@ namespace DiscountCouponQuest.BLL.Models
         /// Имя
         /// </summary>
         public string FirstName { get; set; }
+
         /// <summary>
         /// Изображение
         /// </summary>
         public byte[] Image { get; set; }
+
         /// <summary>
         /// Отчество
         /// </summary>
         public string MiddleName { get; set; }
+
         /// <summary>
         /// Фамилия
         /// </summary>
         public string LastName { get; set; }
+
         /// <summary>
         /// Номер телефона
         /// </summary>
         public int PhoneNumber { get; set; }
+
         /// <summary>
         /// Бонусы
         /// </summary>
         public int Bonus { get; set; }
+
         /// <summary>
         /// Денежный счет
         /// </summary>
         public int Cash { get; set; }
+
         /// <summary>
         /// ID
         /// </summary>

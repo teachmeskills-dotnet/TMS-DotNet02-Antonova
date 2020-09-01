@@ -11,6 +11,7 @@ namespace DiscountCouponQuest.DAL
             : base(options)
         {
         }
+
         public DbSet<Quest> Quests { get; set; }
         public DbSet<QuestHistory> QuestHistories { get; set; }
         public DbSet<Customer> Customers { get; set; }

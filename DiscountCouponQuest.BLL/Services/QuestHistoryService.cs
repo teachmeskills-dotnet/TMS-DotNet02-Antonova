@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-using AutoMapper;
-
+﻿using AutoMapper;
+using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.Common.Interfaces;
-
-using QuestHistoryDAL = DiscountCouponQuest.DAL.Models.QuestHistory;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using CustomerDAL = DiscountCouponQuest.DAL.Models.Customer;
 using QuestDAL = DiscountCouponQuest.DAL.Models.Quest;
-using DiscountCouponQuest.BLL.Models;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
+using QuestHistoryDAL = DiscountCouponQuest.DAL.Models.QuestHistory;
 
 namespace DiscountCouponQuest.BLL.Services
 {
@@ -22,6 +17,7 @@ namespace DiscountCouponQuest.BLL.Services
         private readonly IRepository<QuestDAL> _questRepository;
         private readonly IMapper _mapper;
         private readonly IRepository<CustomerDAL> _customerRepository;
+
         public QuestHistoryService(IRepository<QuestHistoryDAL> repository, IRepository<QuestDAL> questRepository, IMapper mapper, IRepository<CustomerDAL> customerRepository)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
@@ -36,6 +32,7 @@ namespace DiscountCouponQuest.BLL.Services
             var questHistoryToGet = await _repository.GetEntityAsync(q => q.CustomerId.Equals(customerToGet.Id));
             questHistoryToGet.QuestStart = DateTime.Now;
         }
+
         public async Task<List<Quest>> GetAllCustomerQuests(string userId)
         {
             var customerToGet = await _customerRepository.GetEntityAsync(q => q.UserId.Equals(userId));

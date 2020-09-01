@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using AutoMapper;
-using User = DiscountCouponQuest.DAL.Models.User;
+﻿using AutoMapper;
+using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.BLL.Services;
 using DiscountCouponQuest.WebApp.ViewModel;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using DiscountCouponQuest.BLL.Models;
-using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
+using User = DiscountCouponQuest.DAL.Models.User;
 
 namespace DiscountCouponQuest.WebApp.Controllers
 {
@@ -25,6 +22,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
         private readonly CustomersService _customerService;
         private readonly IMapper _mapper;
         private readonly QuestHistoryService _questHistoryService;
+
         public ProfileController(IMapper mapper, UserManager<User> userManager, CustomersService customerService, QuestHistoryService questHistoryService)
         {
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
@@ -32,6 +30,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             _customerService = customerService ?? throw new ArgumentNullException(nameof(customerService));
             _questHistoryService = questHistoryService ?? throw new ArgumentNullException(nameof(questHistoryService));
         }
+
         public async Task<IActionResult> CustomerProfile()
         {
             var username = User.Identity.Name;
@@ -40,6 +39,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             var model = _mapper.Map<CustomerProfileViewModel>(customer);
             return View(model);
         }
+
         public async Task<IActionResult> EditCustomerProfile()
         {
             var username = User.Identity.Name;
@@ -48,6 +48,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             var model = _mapper.Map<CustomerProfileViewModel>(customer);
             return View(model);
         }
+
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> EditCustomerProfile(CustomerProfileViewModel editCustomerProfile)
@@ -71,7 +72,8 @@ namespace DiscountCouponQuest.WebApp.Controllers
             }
             await _customerService.Edit(profile);
             return RedirectToAction("CustomerProfile");
-                                                        }
+        }
+
         public async Task<IActionResult> QuestHistory()
         {
             var username = User.Identity.Name;
@@ -80,6 +82,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             var mapQuest = _mapper.Map<List<QuestViewModel>>(listOfQuests);
             return View(mapQuest);
         }
+
         public async Task<IActionResult> StartQuest(int questHistoryId)
         {
             var username = User.Identity.Name;
@@ -88,6 +91,5 @@ namespace DiscountCouponQuest.WebApp.Controllers
             await _questHistoryService.AddDateToStartQuest(user.Id, questHistoryId);
             return RedirectToAction("CustomerProfile", "Profile");
         }
-
     }
 }

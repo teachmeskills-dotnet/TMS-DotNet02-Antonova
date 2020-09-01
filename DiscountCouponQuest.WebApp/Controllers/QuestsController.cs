@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-
-using AutoMapper;
-
+﻿using AutoMapper;
 using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.BLL.Services;
-using User = DiscountCouponQuest.DAL.Models.User;
 using DiscountCouponQuest.WebApp.ViewModel;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using User = DiscountCouponQuest.DAL.Models.User;
 
 namespace DiscountCouponQuest.WebApp.Controllers
 {
@@ -38,6 +35,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _providerService = providerService ?? throw new ArgumentNullException(nameof(providerService));
         }
+
         [HttpGet]
         public IActionResult ChooseQuest()
         {
@@ -45,6 +43,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             var mapQuest = _mapper.Map<List<QuestViewModel>>(listOfQuests);
             return View(mapQuest);
         }
+
         [HttpPost]
         [Authorize(Roles = "Provider")]
         public async Task<IActionResult> MakeQuest(QuestViewModel makeQuest)
@@ -66,11 +65,13 @@ namespace DiscountCouponQuest.WebApp.Controllers
             await _questService.AddAsync(quest);
             return RedirectToAction("ChooseQuest");
         }
+
         [HttpGet]
         public IActionResult MakeQuest()
         {
             return View();
         }
+
         [HttpGet]
         public async Task<IActionResult> EditQuest(int id)
         {
@@ -78,12 +79,14 @@ namespace DiscountCouponQuest.WebApp.Controllers
             var model = _mapper.Map<QuestViewModel>(quest);
             return View(model);
         }
+
         public async Task<IActionResult> DetailsQuest(int id)
         {
             var quest = await _questService.GetQuestById(id);
             var model = _mapper.Map<QuestViewModel>(quest);
             return View(model);
         }
+
         [HttpPost]
         [Authorize(Roles = "Provider")]
         public async Task<IActionResult> EditQuest(QuestViewModel editQuest)
@@ -105,6 +108,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             }
             return RedirectToAction("ChooseQuest");
         }
+
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> DeleteQuest(int id)
@@ -112,6 +116,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             await _questService.DeleteQuest(id);
             return RedirectToAction("ChooseQuest");
         }
+
         public IActionResult GoogleMap()
         {
             return View();

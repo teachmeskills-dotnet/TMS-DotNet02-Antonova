@@ -1,14 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-using AutoMapper;
-
+﻿using AutoMapper;
 using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.Common.Interfaces;
-
 using Microsoft.EntityFrameworkCore;
-
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using CustomerDAL = DiscountCouponQuest.DAL.Models.Customer;
 
 namespace DiscountCouponQuest.BLL.Services
@@ -17,11 +13,13 @@ namespace DiscountCouponQuest.BLL.Services
     {
         private readonly IRepository<CustomerDAL> _repository;
         private readonly IMapper _mapper;
+
         public CustomersService(IRepository<CustomerDAL> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
+
         public async Task AddAsync(Customer customer)
         {
             var dataModel = _mapper.Map<CustomerDAL>(customer);
@@ -41,6 +39,7 @@ namespace DiscountCouponQuest.BLL.Services
             customer.Id = customerDataModel.Id;
             return customer;
         }
+
         public async Task Edit(CustomerProfile customer)
         {
             var customerToEdit = await _repository.GetEntityAsync(q => q.Id.Equals(customer.Id));
@@ -52,7 +51,6 @@ namespace DiscountCouponQuest.BLL.Services
             customerToEdit.Cash = customer.Cash;
             _repository.Update(customerToEdit);
             await _repository.SaveChangesAsync();
-
         }
     }
 }

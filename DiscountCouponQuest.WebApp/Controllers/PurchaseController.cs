@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using AutoMapper;
-
-using DiscountCouponQuest.BLL.Models;
+﻿using AutoMapper;
 using DiscountCouponQuest.BLL.Services;
 using DiscountCouponQuest.DAL.Models;
-using DiscountCouponQuest.WebApp.ViewModel;
-
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace DiscountCouponQuest.WebApp.Controllers
 {
@@ -32,6 +25,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _customerService = customerService ?? throw new ArgumentNullException(nameof(customerService));
         }
+
         public async Task<IActionResult> BuyQuest(int questId)
         {
             try
@@ -49,4 +43,3 @@ namespace DiscountCouponQuest.WebApp.Controllers
         }
     }
 }
-

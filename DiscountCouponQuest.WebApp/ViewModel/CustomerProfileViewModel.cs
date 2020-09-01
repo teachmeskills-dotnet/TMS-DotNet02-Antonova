@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace DiscountCouponQuest.WebApp.ViewModel
 {
@@ -13,31 +8,39 @@ namespace DiscountCouponQuest.WebApp.ViewModel
         /// Имя
         /// </summary>
         public string FirstName { get; set; }
+
         /// <summary>
         /// Изображение
         /// </summary>
         public IFormFile ImageFile { get; set; }
+
         public byte[] Image { get; set; }
+
         /// <summary>
         /// Отчество
         /// </summary>
         public string MiddleName { get; set; }
+
         /// <summary>
         /// Фамилия
         /// </summary>
         public string LastName { get; set; }
+
         /// <summary>
         /// Номер телефона
         /// </summary>
         public int PhoneNumber { get; set; }
+
         /// <summary>
         /// Бонусы
         /// </summary>
         public int Bonus { get; set; }
+
         /// <summary>
         /// Денежный счет
         /// </summary>
         public int Cash { get; set; }
+
         /// <summary>
         /// ID
         /// </summary>

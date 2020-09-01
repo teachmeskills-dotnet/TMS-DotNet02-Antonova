@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using DiscountCouponQuest.BLL.Models;
 using CustomerDAL = DiscountCouponQuest.DAL.Models.Customer;
-using QuestDAL = DiscountCouponQuest.DAL.Models.Quest;
 using ProviderDAL = DiscountCouponQuest.DAL.Models.Provider;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+using QuestDAL = DiscountCouponQuest.DAL.Models.Quest;
 
 namespace DiscountCouponQuest.BLL.Configurations
 {
@@ -24,4 +21,3 @@ namespace DiscountCouponQuest.BLL.Configurations
         }
     }
 }
-

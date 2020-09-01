@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DiscountCouponQuest.BLL.Models
+﻿namespace DiscountCouponQuest.BLL.Models
 {
     /// <summary>
     /// Юридическое лицо
@@ -13,17 +9,19 @@ namespace DiscountCouponQuest.BLL.Models
         {
             UserId = id;
         }
+
         /// <summary>
         /// ID
         /// </summary>
         public int Id { get; set; }
+
         /// <summary>
         /// ID пользователя
         /// </summary>
         public string UserId { get; set; }
+
         public Provider()
         {
-
         }
     }
 }

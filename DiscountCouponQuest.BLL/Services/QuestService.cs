@@ -1,15 +1,11 @@
-﻿using System;
+﻿using AutoMapper;
+using DiscountCouponQuest.BLL.Models;
+using DiscountCouponQuest.Common.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-using AutoMapper;
-
-using DiscountCouponQuest.BLL.Models;
-using DiscountCouponQuest.Common.Interfaces;
-
-using Microsoft.EntityFrameworkCore;
-
 using QuestDAL = DiscountCouponQuest.DAL.Models.Quest;
 
 namespace DiscountCouponQuest.BLL.Services
@@ -34,12 +30,14 @@ namespace DiscountCouponQuest.BLL.Services
             var result = _mapper.Map<List<Quest>>(allQuests);
             return result;
         }
+
         public async Task AddAsync(Quest quest)
         {
             var dataModel = _mapper.Map<QuestDAL>(quest);
             await _repository.AddAsync(dataModel);
             await _repository.SaveChangesAsync();
         }
+
         public async Task Edit(Quest quest)
         {
             var questToEdit = await _repository.GetEntityAsync(q => q.Id.Equals(quest.Id));
@@ -57,6 +55,7 @@ namespace DiscountCouponQuest.BLL.Services
             _repository.Update(questToEdit);
             await _repository.SaveChangesAsync();
         }
+
         public async Task<Quest> GetQuestById(int id)
         {
             var questToGet = await _repository.GetEntityAsync(q => q.Id.Equals(id));
@@ -64,6 +63,7 @@ namespace DiscountCouponQuest.BLL.Services
             result.Id = questToGet.Id;
             return result;
         }
+
         public async Task DeleteQuest(int id)
         {
             var all = _repository.GetAll().ToList();
