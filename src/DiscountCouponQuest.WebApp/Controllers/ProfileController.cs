@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
+
+using DiscountCouponQuest.BLL.Interfaces;
 using DiscountCouponQuest.BLL.Models;
-using DiscountCouponQuest.BLL.Services;
 using DiscountCouponQuest.WebApp.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -19,11 +20,11 @@ namespace DiscountCouponQuest.WebApp.Controllers
     public class ProfileController : Controller
     {
         private readonly UserManager<User> _userManager;
-        private readonly CustomersService _customerService;
+        private readonly ICustomersService _customerService;
         private readonly IMapper _mapper;
-        private readonly QuestHistoryService _questHistoryService;
+        private readonly IQuestHistoryService _questHistoryService;
 
-        public ProfileController(IMapper mapper, UserManager<User> userManager, CustomersService customerService, QuestHistoryService questHistoryService)
+        public ProfileController(IMapper mapper, UserManager<User> userManager, ICustomersService customerService, IQuestHistoryService questHistoryService)
         {
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));

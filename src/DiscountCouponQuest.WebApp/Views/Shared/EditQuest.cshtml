@@ -1,6 +1,6 @@
 ﻿@model QuestViewModel
     <div class="edit-quest">
-        <h2>Edit</h2>
+        <h2>Редактирование</h2>
         <form method="post" asp-controller="Quests" asp-action="EditQuest" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly"></div>
             <input asp-for="Id" hidden />
@@ -60,7 +60,7 @@
             </div>
             <fieldset disabled>
                 <div class="form-group">
-                    <label asp-for="UniqueCode">Disabled input</label>
+                    <label asp-for="UniqueCode">Уникальный номер</label>
                     <input asp-for="UniqueCode" class="form-control">
                 </div>
             </fieldset>

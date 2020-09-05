@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+
+using DiscountCouponQuest.BLL.Interfaces;
 using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.BLL.Services;
 using DiscountCouponQuest.WebApp.ViewModel;
@@ -20,15 +22,15 @@ namespace DiscountCouponQuest.WebApp.Controllers
     public class QuestsController : Controller
     {
         private readonly UserManager<User> _userManager;
-        private readonly QuestService _questService;
-        private readonly ProviderService _providerService;
+        private readonly IQuestService _questService;
+        private readonly IProviderService _providerService;
         private readonly IMapper _mapper;
 
         /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="questService"></param>
-        public QuestsController(QuestService questService, IMapper mapper, UserManager<User> userManager, ProviderService providerService)
+        public QuestsController(IQuestService questService, IMapper mapper, UserManager<User> userManager, IProviderService providerService)
         {
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _questService = questService ?? throw new ArgumentNullException(nameof(questService));

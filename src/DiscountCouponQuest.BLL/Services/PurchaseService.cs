@@ -1,11 +1,12 @@
-﻿using DiscountCouponQuest.Common.Interfaces;
+﻿using DiscountCouponQuest.BLL.Interfaces;
+using DiscountCouponQuest.Common.Interfaces;
 using DiscountCouponQuest.DAL.Models;
 using System;
 using System.Threading.Tasks;
 
 namespace DiscountCouponQuest.BLL.Services
 {
-    public class PurchaseService
+    public class PurchaseService : IPurchaseService
     {
         private readonly IRepository<Quest> _repository;
         private readonly IRepository<Customer> _customerRepository;

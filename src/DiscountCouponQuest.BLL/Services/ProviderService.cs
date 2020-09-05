@@ -1,8 +1,12 @@
 ﻿using AutoMapper;
+
+using DiscountCouponQuest.BLL.Interfaces;
 using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.Common.Interfaces;
 using DiscountCouponQuest.DAL.Models;
+
 using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,7 +16,7 @@ namespace DiscountCouponQuest.BLL.Services
     /// <summary>
     /// Сервис юридического лица
     /// </summary>
-    public class ProviderService
+    public class ProviderService : IProviderService
     {
         private readonly IRepository<Provider> _repository;
         private readonly IMapper _mapper;

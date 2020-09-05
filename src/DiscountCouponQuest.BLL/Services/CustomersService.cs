@@ -1,15 +1,22 @@
 ﻿using AutoMapper;
+
+using DiscountCouponQuest.BLL.Interfaces;
 using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.Common.Interfaces;
 using DiscountCouponQuest.DAL.Models;
+
 using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace DiscountCouponQuest.BLL.Services
 {
-    public class CustomersService
+    /// <summary>
+    /// Сервис отвечающий за работу с юзером
+    /// </summary>
+    public class CustomersService : ICustomersService
     {
         private readonly IRepository<Customer> _repository;
         private readonly IMapper _mapper;

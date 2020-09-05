@@ -1,10 +1,11 @@
 ﻿using DiscountCouponQuest.BLL.Interfaces;
 using DiscountCouponQuest.BLL.Models;
-using DiscountCouponQuest.BLL.Services;
 using DiscountCouponQuest.DAL.Models;
 using DiscountCouponQuest.WebApp.ViewModel;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+
 using System;
 using System.Threading.Tasks;
 
@@ -17,8 +18,8 @@ namespace DiscountCouponQuest.WebApp.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly CustomersService _customersService;
-        private readonly ProviderService _providersService;
+        private readonly ICustomersService _customersService;
+        private readonly IProviderService _providersService;
         private readonly IEmailService _emailService;
 
         /// <summary>
@@ -29,7 +30,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
         /// <param name="roleManager"></param>
         /// <param name="dbContext"></param>
         /// <param name="setting"></param>
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, CustomersService customersService, ProviderService providerService, IEmailService emailService)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ICustomersService customersService, IProviderService providerService, IEmailService emailService)
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));

@@ -1,4 +1,6 @@
-﻿namespace DiscountCouponQuest.WebApp.ViewModel
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DiscountCouponQuest.WebApp.ViewModel
 {
     /// <summary>
     /// Регистрация пользователя
@@ -24,6 +26,7 @@
         /// <summary>
         /// Номер телефона
         /// </summary>
+        [StringLength(12, MinimumLength = 11, ErrorMessage = "Введите номер в международном формате")]
         public int PhoneNumber { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DiscountCouponQuest.BLL.Services;
+﻿using DiscountCouponQuest.BLL.Interfaces;
+using DiscountCouponQuest.BLL.Services;
 using DiscountCouponQuest.DAL.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +14,10 @@ namespace DiscountCouponQuest.WebApp.Controllers
     public class PurchaseController : Controller
     {
         private readonly UserManager<User> _userManager;
-        private readonly PurchaseService _purchaseService;
-        private readonly CustomersService _customerService;
+        private readonly IPurchaseService _purchaseService;
+        private readonly ICustomersService _customerService;
 
-        public PurchaseController(PurchaseService purchaseService, UserManager<User> userManager, CustomersService customerService)
+        public PurchaseController(IPurchaseService purchaseService, UserManager<User> userManager, ICustomersService customerService)
         {
             _purchaseService = purchaseService ?? throw new ArgumentNullException(nameof(purchaseService));
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));

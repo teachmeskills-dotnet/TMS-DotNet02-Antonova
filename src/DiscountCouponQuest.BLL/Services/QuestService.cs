@@ -1,8 +1,12 @@
 ﻿using AutoMapper;
+
+using DiscountCouponQuest.BLL.Interfaces;
 using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.Common.Interfaces;
 using DiscountCouponQuest.DAL.Models;
+
 using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +17,7 @@ namespace DiscountCouponQuest.BLL.Services
     /// <summary>
     /// Сервис для квестов
     /// </summary>
-    public class QuestService
+    public class QuestService : IQuestService
     {
         private readonly IRepository<Quest> _repository;
         private readonly IMapper _mapper;
