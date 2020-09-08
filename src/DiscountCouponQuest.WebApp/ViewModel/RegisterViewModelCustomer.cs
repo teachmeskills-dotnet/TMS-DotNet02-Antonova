@@ -26,7 +26,6 @@ namespace DiscountCouponQuest.WebApp.ViewModel
         /// <summary>
         /// Номер телефона
         /// </summary>
-        [StringLength(12, MinimumLength = 11, ErrorMessage = "Введите номер в международном формате")]
         public int PhoneNumber { get; set; }
     }
 }

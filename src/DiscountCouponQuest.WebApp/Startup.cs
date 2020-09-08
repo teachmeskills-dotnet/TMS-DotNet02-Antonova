@@ -43,7 +43,7 @@ namespace DiscountCouponQuest.WebApp
             services.AddScoped<IProviderService, ProviderService>();
             services.AddScoped<IQuestService, QuestService>();
             services.AddScoped<IPurchaseService, PurchaseService>();
-            services.AddScoped<QuestHistoryService>();
+            services.AddScoped<IQuestHistoryService, QuestHistoryService>();
 
             services.AddAutoMapper(c => 
             { 

@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DiscountCouponQuest.DAL.Migrations
 {
@@ -52,10 +52,13 @@ namespace DiscountCouponQuest.DAL.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Image = table.Column<byte[]>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
                     MiddleName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<int>(nullable: false),
+                    Bonus = table.Column<int>(nullable: false),
+                    Cash = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -69,9 +72,6 @@ namespace DiscountCouponQuest.DAL.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    SerialNumber = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -192,11 +192,18 @@ namespace DiscountCouponQuest.DAL.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    Discount = table.Column<int>(nullable: false),
+                    Time = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
                     UniqueCode = table.Column<string>(nullable: true),
                     Image = table.Column<byte[]>(nullable: true),
+                    Distance = table.Column<string>(nullable: true),
+                    Price = table.Column<int>(nullable: false),
+                    Bonus = table.Column<int>(nullable: false),
+                    Country = table.Column<string>(nullable: true),
+                    Town = table.Column<string>(nullable: true),
+                    Street = table.Column<string>(nullable: true),
+                    Number = table.Column<string>(nullable: true),
                     ProviderId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -216,24 +223,24 @@ namespace DiscountCouponQuest.DAL.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreationDate = table.Column<DateTime>(nullable: false),
-                    IsUsed = table.Column<bool>(nullable: false),
-                    CouponId = table.Column<int>(nullable: false),
+                    QuestStart = table.Column<DateTime>(nullable: true),
+                    IsPassed = table.Column<bool>(nullable: false),
+                    QuestId = table.Column<int>(nullable: false),
                     CustomerId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_QuestHistories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_QuestHistories_Quests_CouponId",
-                        column: x => x.CouponId,
-                        principalTable: "Quests",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_QuestHistories_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_QuestHistories_Quests_QuestId",
+                        column: x => x.QuestId,
+                        principalTable: "Quests",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -278,14 +285,14 @@ namespace DiscountCouponQuest.DAL.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_QuestHistories_CouponId",
-                table: "QuestHistories",
-                column: "CouponId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_QuestHistories_CustomerId",
                 table: "QuestHistories",
                 column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QuestHistories_QuestId",
+                table: "QuestHistories",
+                column: "QuestId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Quests_ProviderId",
@@ -320,10 +327,10 @@ namespace DiscountCouponQuest.DAL.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Quests");
+                name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "Quests");
 
             migrationBuilder.DropTable(
                 name: "Providers");

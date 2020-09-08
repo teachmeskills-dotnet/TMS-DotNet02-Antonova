@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiscountCouponQuest.DAL.Migrations
 {
     [DbContext(typeof(DiscountCouponQuestDbContext))]
-    [Migration("20200716190155_AddNewItems")]
-    partial class AddNewItems
+    [Migration("20200905170002_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,8 +28,17 @@ namespace DiscountCouponQuest.DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Bonus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Cash")
+                        .HasColumnType("int");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -73,13 +82,13 @@ namespace DiscountCouponQuest.DAL.Migrations
                     b.Property<int>("Bonus")
                         .HasColumnType("int");
 
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Distance")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Finish")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Image")
@@ -91,16 +100,22 @@ namespace DiscountCouponQuest.DAL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Number")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.Property<int>("ProviderId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Start")
+                    b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Time")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Town")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UniqueCode")
@@ -123,13 +138,13 @@ namespace DiscountCouponQuest.DAL.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsUsed")
+                    b.Property<bool>("IsPassed")
                         .HasColumnType("bit");
 
                     b.Property<int>("QuestId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("QuestPassing")
+                    b.Property<DateTime?>("QuestStart")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
