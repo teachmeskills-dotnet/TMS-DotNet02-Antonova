@@ -15,18 +15,5 @@ namespace DiscountCouponQuest.DAL.Models
         public string UserId { get; set; }
 
         public List<Quest> Quests { get; set; }
-
-        /// <summary>
-        /// Конструктор
-        /// </summary>
-        /// <param name="userId"></param>
-        public Provider(string userId)
-        {
-            UserId = userId;
-        }
-
-        public Provider()
-        {
-        }
     }
 }

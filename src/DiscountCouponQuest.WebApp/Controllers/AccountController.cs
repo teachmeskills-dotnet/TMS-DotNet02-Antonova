@@ -91,7 +91,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
                 if (result.Succeeded)
                 {
                     await EmailSend(model, user);
-                    var customer = new CustomerDto(user.Id)
+                    var customer = new CustomerDto()
                     {
                         PhoneNumber = model.PhoneNumber,
                         UserId = user.Id

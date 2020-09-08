@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountCouponQuest.DAL", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountCouponQuest.WebApp", "src\DiscountCouponQuest.WebApp\DiscountCouponQuest.WebApp.csproj", "{808B00FC-C7BB-4C1A-A557-CCF139B0C25D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountCouponQuest.Tests", "src\DiscountCouponQuest.Tests\DiscountCouponQuest.Tests.csproj", "{B13BD9A7-E938-4F3D-906E-E7F472857FAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{808B00FC-C7BB-4C1A-A557-CCF139B0C25D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{808B00FC-C7BB-4C1A-A557-CCF139B0C25D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{808B00FC-C7BB-4C1A-A557-CCF139B0C25D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B13BD9A7-E938-4F3D-906E-E7F472857FAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B13BD9A7-E938-4F3D-906E-E7F472857FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B13BD9A7-E938-4F3D-906E-E7F472857FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B13BD9A7-E938-4F3D-906E-E7F472857FAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

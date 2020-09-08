@@ -2,11 +2,6 @@
 {
     public class CustomerDto
     {
-        public CustomerDto(string id)
-        {
-            UserId = id;
-        }
-
         public int Id { get; set; }
         public byte[] Image { get; set; }
         public string FirstName { get; set; }
@@ -17,9 +12,5 @@
         public int Cash { get; set; }
 
         public string UserId { get; set; }
-
-        public CustomerDto()
-        {
-        }
     }
 }

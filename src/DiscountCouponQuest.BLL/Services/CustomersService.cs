@@ -29,6 +29,8 @@ namespace DiscountCouponQuest.BLL.Services
 
         public async Task AddAsync(CustomerDto customer)
         {
+            customer = customer ?? throw new ArgumentNullException(nameof(customer));
+
             var dataModel = _mapper.Map<Customer>(customer);
             await _repository.AddAsync(dataModel);
             await _repository.SaveChangesAsync();
@@ -36,6 +38,11 @@ namespace DiscountCouponQuest.BLL.Services
 
         public async Task<CustomerDto> GetCustomerByUserId(string userId)
         {
+            if (userId is null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
             var customers = await _repository.GetAll().AsNoTracking().ToListAsync();
             var customerDataModel = customers.FirstOrDefault(c => c.UserId.Equals(userId, StringComparison.InvariantCultureIgnoreCase));
             if (customerDataModel is null)
