@@ -1,0 +1,72 @@
+﻿@model QuestViewModel
+
+<div class="edit-quest">
+    <h2>Редактирование</h2>
+    <form method="post" asp-controller="Quests" asp-action="EditQuest" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly"></div>
+        <input asp-for="Id" hidden />
+        <div>
+            <label asp-for="Name"></label><br />
+            <input asp-for="Name" />
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div>
+            <label asp-for="Time"></label><br />
+            <input asp-for="Time" />
+            <span asp-validation-for="Time"></span>
+        </div>
+        <div>
+            <label asp-for="Distance"></label><br />
+            <input asp-for="Distance" />
+            <span asp-validation-for="Distance"></span>
+        </div>
+        <div>
+            <label asp-for="Price"></label><br />
+            <input asp-for="Price" />
+            <span asp-validation-for="Price"></span>
+        </div>
+        <div>
+            <label asp-for="Bonus"></label><br />
+            <input asp-for="Bonus" />
+            <span asp-validation-for="Bonus"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea class="form-control" asp-for="Description" rows="3"></textarea>
+        </div>
+        <div>
+            <label asp-for="ImageFile"></label><br />
+            <input asp-for="ImageFile" />
+            <span asp-validation-for="ImageFile"></span>
+        </div>
+        <div>
+            <label asp-for="Country"></label><br />
+            <input asp-for="Country" />
+            <span asp-validation-for="Country"></span>
+        </div>
+        <div>
+            <label asp-for="Town"></label><br />
+            <input asp-for="Town" />
+            <span asp-validation-for="Town"></span>
+        </div>
+        <div>
+            <label asp-for="Street"></label><br />
+            <input asp-for="Street" />
+            <span asp-validation-for="Street"></span>
+        </div>
+        <div>
+            <label asp-for="Number"></label><br />
+            <input asp-for="Number" />
+            <span asp-validation-for="Number"></span>
+        </div>
+        <fieldset disabled>
+            <div class="form-group">
+                <label asp-for="UniqueCode">Уникальный номер</label>
+                <input asp-for="UniqueCode" class="form-control">
+            </div>
+        </fieldset>
+        <div>
+            <input type="submit" value="Сохранить" />
+        </div>
+    </form>
+</div>

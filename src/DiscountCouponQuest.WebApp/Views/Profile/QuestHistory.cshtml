@@ -1,0 +1,19 @@
+﻿@model List<QuestViewModel>
+
+<div class="row">
+    @foreach (var quest in Model)
+    {
+        <div class="col-4">
+            <div class="cnt cen">
+                <div class="history-card">
+                    <h2 class="h2-history">@quest.Name</h2>
+                    <hr class="hr-history" />
+                    <p class="description">
+                        @quest.Description
+                    </p>
+                    <a class="btn btn-dark" role="button" asp-controller="Profile" asp-action="StartQuest">Начать</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

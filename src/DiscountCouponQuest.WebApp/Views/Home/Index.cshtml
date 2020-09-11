@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="page-section clearfix">
+    <div class="container">
+        <div class="intro">
+            <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="~/img/pexels-photo-1252500.jpeg" alt="">
+            <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                <h2 class="section-heading mb-4">
+                    <span class="section-heading-upper">Сюжетные экскурсии с элементами игры в твоем городе</span>
+                    <span class="section-heading-lower">Что такое квест?</span>
+                </h2>
+                <p class="mb-3">
+                    Квесты в Минске-развлечение для небольшой компании друзей от 2 до 5 человек. В ходе игры участникам нужно последовательно выполнить серию интересных заданий
+                    в разных местах города
+                </p>
+                <div class="intro-button mx-auto">
+                    <a class="btn btn-primary btn-xl" asp-controller="Quests" asp-action="ChooseQuest">Начни играть, выбери свой первый квест!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="page-section cta">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <div class="cta-inner text-center rounded">
+                    <h2 class="section-heading mb-4">
+                        <span class="section-heading-upper">Почему квест лучше обычной прогулки?</span>
+                    </h2>
+                    <p class="mb-0">Начав игру, вы сможете активно отдохнуть с друзьями, близкими и любимыми. Также узнаете массу интересных фактов и легенд о городе. И, конечно же, получите невероятные эмоции от прохождений испытаний!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

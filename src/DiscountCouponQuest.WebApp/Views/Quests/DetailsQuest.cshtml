@@ -1,0 +1,71 @@
+﻿@model DiscountCouponQuest.WebApp.ViewModel.QuestViewModel
+
+@{
+    ViewData["Title"] = "DetailsQuest";
+}
+
+<div>
+    <h3>
+        <div class='imgblock'>
+            <img style='width:80%; height:80%;' src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Image))" />
+            <span>@Model.Name</span>
+        </div>
+    </h3>
+    <div class="d-flex details-text">
+        <div class="col-4">
+            <div class="hw_100 d-flex align-items-center">
+                <div>
+                    <h1>Время</h1>
+                    @Model.Time
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="hw_100 d-flex align-items-center">
+                <div>
+                    <h1 class="det-h1">Длина маршрута</h1>
+                    @Model.Distance
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="hw_100 d-flex align-items-center">
+                <div>
+                    <h1>Цена</h1>
+                    @Model.Price
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="p-details">
+        @Model.Description
+    </p>
+    <h6>Бонусы : @Model.Bonus</h6>
+    <h6>Начало квеста : @Model.Street</h6>
+</div>
+<div id="map"></div>
+<style>
+    #map {
+        height: 400px;
+        width: 80%;
+    }
+</style>
+<script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+<link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
+<script type="text/javascript">
+    window.onload = function () {
+        L.mapquest.key = 'NGpCafX70EAzVEyOlDaAsTapc1LmvoVC';
+
+        var map = L.mapquest.map('map', {
+            center: [0, 0],
+            layers: L.mapquest.tileLayer('map'),
+            zoom: 14
+        });
+
+        L.mapquest.geocoding().geocode('@Model.Country, @Model.Town, @Model.Street,@Model.Number');
+    }
+</script>
+<div>
+    <a asp-controller="Quests" asp-action="ChooseQuest">Вернуться к списку квестов</a>
+    <a style="color: #F7971E;" asp-controller="Purchase" asp-action="BuyQuest" asp-route-questId="@Model.Id">Купить</a>
+</div>
