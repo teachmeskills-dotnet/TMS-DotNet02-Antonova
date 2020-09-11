@@ -2,10 +2,8 @@
 using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.DAL.Models;
 using DiscountCouponQuest.WebApp.ViewModel;
-
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
 using System;
 using System.Threading.Tasks;
 
@@ -126,7 +124,7 @@ namespace DiscountCouponQuest.WebApp.Controllers
                 if (result.Succeeded)
                 {
                     await EmailSend(model, user);
-                    var provider = new ProviderDto(user.Id)
+                    var provider = new ProviderDto()
                     {
                         UserId = user.Id
                     };

@@ -6,7 +6,6 @@ namespace DiscountCouponQuest.WebApp.ViewModel
     /// <summary>
     /// Выбор квеста
     /// </summary>
-
     public class QuestViewModel
     {
         /// <summary>

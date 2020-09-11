@@ -1,5 +1,4 @@
 ﻿using DiscountCouponQuest.BLL.Interfaces;
-using DiscountCouponQuest.BLL.Services;
 using DiscountCouponQuest.DAL.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

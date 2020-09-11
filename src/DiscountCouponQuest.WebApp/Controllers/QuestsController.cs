@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-
 using DiscountCouponQuest.BLL.Interfaces;
 using DiscountCouponQuest.BLL.Models;
-using DiscountCouponQuest.BLL.Services;
 using DiscountCouponQuest.WebApp.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

@@ -5,11 +5,6 @@
     /// </summary>
     public class ProviderDto
     {
-        public ProviderDto(string id)
-        {
-            UserId = id;
-        }
-
         /// <summary>
         /// ID
         /// </summary>
@@ -19,9 +14,5 @@
         /// ID пользователя
         /// </summary>
         public string UserId { get; set; }
-
-        public ProviderDto()
-        {
-        }
     }
 }

@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-
 using DiscountCouponQuest.BLL.Interfaces;
 using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.Common.Interfaces;
 using DiscountCouponQuest.DAL.Models;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;

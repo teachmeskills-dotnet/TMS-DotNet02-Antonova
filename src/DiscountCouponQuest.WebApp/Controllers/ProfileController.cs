@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-
 using DiscountCouponQuest.BLL.Interfaces;
 using DiscountCouponQuest.BLL.Models;
 using DiscountCouponQuest.WebApp.ViewModel;

@@ -1,5 +1,4 @@
 ﻿using DiscountCouponQuest.DAL.Models;
-
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,8 +12,11 @@ namespace DiscountCouponQuest.DAL
         }
 
         public DbSet<Quest> Quests { get; set; }
+
         public DbSet<QuestHistory> QuestHistories { get; set; }
+
         public DbSet<Customer> Customers { get; set; }
+
         public DbSet<Provider> Providers { get; set; }
     }
 }

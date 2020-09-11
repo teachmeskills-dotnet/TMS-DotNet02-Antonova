@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "DetailsQuest";
 }
+
 <div>
     <h3>
         <div class='imgblock'>
@@ -66,5 +67,5 @@
 </script>
 <div>
     <a asp-controller="Quests" asp-action="ChooseQuest">Вернуться к списку квестов</a>
-    <a asp-controller="Purchase" asp-action="BuyQuest" asp-route-questId="@Model.Id">Купить</a>
+    <a style="color: #F7971E;" asp-controller="Purchase" asp-action="BuyQuest" asp-route-questId="@Model.Id">Купить</a>
 </div>

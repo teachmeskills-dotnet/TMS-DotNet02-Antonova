@@ -1,69 +1,70 @@
 ﻿@model QuestViewModel
+
 <h2 class="make-h2">Создать квест</h2>
 <form method="post" asp-controller="Quests" asp-action="MakeQuest" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly"></div>
     <div class="make-text">
-    <div>
-        <label asp-for="Name">Название</label><br />
-        <input asp-for="Name" />
-        <span asp-validation-for="Name"></span>
-    </div>
-    <div>
-        <label asp-for="Time">Время</label><br />
-        <input asp-for="Time" />
-        <span asp-validation-for="Time"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Description">Описание квеста</label>
-        <textarea class="form-control" asp-for="Description" rows="3"></textarea>
-    </div>
-    <div>
-        <label asp-for="Distance">Расстояние</label><br />
-        <input asp-for="Distance" />
-        <span asp-validation-for="Distance"></span>
-    </div>
-    <div>
-        <label asp-for="ImageFile">Изображение</label><br />
-        <input asp-for="ImageFile" />
-        <span asp-validation-for="ImageFile"></span>
-    </div>
-    <div>
-        <label asp-for="UniqueCode">Уникальный номер</label><br />
-        <input asp-for="UniqueCode" />
-        <span asp-validation-for="UniqueCode"></span>
-    </div>
-    <div>
-        <label asp-for="Price">Цена</label><br />
-        <input asp-for="Price" />
-        <span asp-validation-for="Price"></span>
-    </div>
-    <div>
-        <label asp-for="Bonus">Бонусы</label><br />
-        <input asp-for="Bonus" />
-        <span asp-validation-for="Bonus"></span>
-    </div>
-    <div>
-        <label asp-for="Country">Страна</label><br />
-        <input asp-for="Country" />
-        <span asp-validation-for="Country"></span>
-    </div>
-    <div>
-        <label asp-for="Town">Город</label><br />
-        <input asp-for="Town" />
-        <span asp-validation-for="Town"></span>
-    </div>
-    <div>
-        <label asp-for="Street">Улица</label><br />
-        <input asp-for="Street" />
-        <span asp-validation-for="Street"></span>
-    </div>
-    <div>
-        <label asp-for="Number">Номер дома</label><br />
-        <input asp-for="Number" />
-        <span asp-validation-for="Number"></span>
-    </div>
-    <div>
-        <input type="submit" value="Создать" />
-    </div>
+        <div>
+            <label asp-for="Name">Название</label><br />
+            <input asp-for="Name" />
+            <span asp-validation-for="Name"></span>
         </div>
+        <div>
+            <label asp-for="Time">Время</label><br />
+            <input asp-for="Time" />
+            <span asp-validation-for="Time"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description">Описание квеста</label>
+            <textarea class="form-control" asp-for="Description" rows="3"></textarea>
+        </div>
+        <div>
+            <label asp-for="Distance">Расстояние</label><br />
+            <input asp-for="Distance" />
+            <span asp-validation-for="Distance"></span>
+        </div>
+        <div>
+            <label asp-for="ImageFile">Изображение</label><br />
+            <input asp-for="ImageFile" />
+            <span asp-validation-for="ImageFile"></span>
+        </div>
+        <div>
+            <label asp-for="UniqueCode">Уникальный номер</label><br />
+            <input asp-for="UniqueCode" />
+            <span asp-validation-for="UniqueCode"></span>
+        </div>
+        <div>
+            <label asp-for="Price">Цена</label><br />
+            <input asp-for="Price" />
+            <span asp-validation-for="Price"></span>
+        </div>
+        <div>
+            <label asp-for="Bonus">Бонусы</label><br />
+            <input asp-for="Bonus" />
+            <span asp-validation-for="Bonus"></span>
+        </div>
+        <div>
+            <label asp-for="Country">Страна</label><br />
+            <input asp-for="Country" />
+            <span asp-validation-for="Country"></span>
+        </div>
+        <div>
+            <label asp-for="Town">Город</label><br />
+            <input asp-for="Town" />
+            <span asp-validation-for="Town"></span>
+        </div>
+        <div>
+            <label asp-for="Street">Улица</label><br />
+            <input asp-for="Street" />
+            <span asp-validation-for="Street"></span>
+        </div>
+        <div>
+            <label asp-for="Number">Номер дома</label><br />
+            <input asp-for="Number" />
+            <span asp-validation-for="Number"></span>
+        </div>
+        <div>
+            <input type="submit" value="Создать" />
+        </div>
+    </div>
 </form>

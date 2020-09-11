@@ -39,14 +39,14 @@ namespace DiscountCouponQuest.WebApp
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
             services.AddScoped<IEmailService, EmailService>();
 
-            services.AddScoped<ICustomersService,CustomersService>();
+            services.AddScoped<ICustomersService, CustomersService>();
             services.AddScoped<IProviderService, ProviderService>();
             services.AddScoped<IQuestService, QuestService>();
             services.AddScoped<IPurchaseService, PurchaseService>();
             services.AddScoped<IQuestHistoryService, QuestHistoryService>();
 
-            services.AddAutoMapper(c => 
-            { 
+            services.AddAutoMapper(c =>
+            {
                 c.AddProfile<AutoMappingBLL>();
                 c.AddProfile<AutoMapping>();
             },
